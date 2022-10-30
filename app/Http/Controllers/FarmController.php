@@ -142,7 +142,6 @@ class FarmController extends Controller
             );
 
             $farm = Farm::find($id);
-            // $farm->nis = $request->nis;
             $farm->jk = $request->jk;
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
