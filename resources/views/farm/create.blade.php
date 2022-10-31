@@ -17,14 +17,7 @@
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="{{ route('farm.store') }}">
                 @csrf
-                {{-- <div class="col-md-3">
-                    <label for="inputnis" class="form-label">NIS</label>
-                    <input type="text" class="form-control" id="nis" name="nis" value="{{ old('nis') }}"
-                        required>
-                    @error('nis')
-                        <small class="text-danger error_nis">{{ $message }}</small>
-                    @enderror
-                </div> --}}
+                
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Jenis Kelamin</label>
                     <select id="inputState" class="form-select" name="jk" id="jk">
