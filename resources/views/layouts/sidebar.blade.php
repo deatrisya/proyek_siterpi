@@ -60,7 +60,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed " href="index.html">
+        <a class="nav-link collapsed " href="{{route('user.index')}}" id="menu-user">
           <i class="bi bi-grid"></i>
           <span>User</span>
         </a>
