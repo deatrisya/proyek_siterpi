@@ -85,7 +85,6 @@ class FarmController extends Controller
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
             $farm->keterangan = $request->keterangan;
-            // dd($farm);
             $farm->save();
 
 
@@ -128,17 +127,20 @@ class FarmController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $attributes = [
+            'jk' => 'jenis kelamin',
+        ];
         try {
             $request->validate(
                 [
                     // 'nis' => 'required',
-                    'jk' => 'string|required',
+                    'jk' => 'required',
                     'status' => 'string|required',
                     'kondisi' => 'string|required',
                     // 'keterangan' => 'string|required'
                 ],
                 [],
-
+                $attributes
             );
 
             $farm = Farm::find($id);
