@@ -8,7 +8,7 @@
         <h1>Sapi</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                 <li class="breadcrumb-item active">Sapi</li>
             </ol>
         </nav>
@@ -49,6 +49,7 @@
                         </div>
 
                         <!-- Table with stripped rows -->
+                       <div class="table-responsive">
                         <table class="table" id="farmData" width="100%">
                             <thead>
                                 <tr>
@@ -66,6 +67,7 @@
 
                             </tbody>
                         </table>
+                       </div>
                         <!-- End Table with stripped rows -->
 
                     </div>

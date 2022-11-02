@@ -4,20 +4,20 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="{{route('home')}}" id="menu-dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed " href="index.html">
-          <i class="bi bi-grid"></i>
+        <a class="nav-link collapsed " href="{{route('employee.index')}}" id="menu-employee">
+            <i class="bi bi-person-square"></i>
           <span>Pegawai</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed " href="{{route('farm.index')}}" id="menu-farm">
-          <i class="bi bi-grid"></i>
+            <i class="bi bi-house"></i>
           <span>Sapi</span>
         </a>
       </li>
@@ -29,12 +29,12 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="components-alerts.html" id="menu-feed">
               <i class="bi bi-circle"></i><span>Pakan</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="components-accordion.html" id="menu-detail-feed">
               <i class="bi bi-circle"></i><span>Stok Pakan</span>
             </a>
           </li>
@@ -47,12 +47,12 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
+            <a href="forms-elements.html" id="menu-drug">
               <i class="bi bi-circle"></i><span>Obat</span>
             </a>
           </li>
           <li>
-            <a href="forms-layouts.html">
+            <a href="forms-layouts.html" id="menu-detail-drug">
               <i class="bi bi-circle"></i><span>Stok Obat</span>
             </a>
           </li>
@@ -61,7 +61,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed " href="index.html">
-          <i class="bi bi-grid"></i>
+            <i class="bi bi-person"></i>
           <span>User</span>
         </a>
       </li>

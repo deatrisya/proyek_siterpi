@@ -28,4 +28,5 @@ class Farm extends Model
             ]
         ];
     }
+
 }

@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'address' => 'Dusun Kutuan Timur, Desa Lecari, Kec. Sukorejo',
+    'phone' => '08132121312',
 
     /*
     |--------------------------------------------------------------------------

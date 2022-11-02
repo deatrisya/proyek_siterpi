@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FarmController;
 use Illuminate\Support\Facades\Auth;
@@ -30,5 +31,11 @@ Route::group(['middleware'=>'auth'],function() {
 
     Route::get('farms-pdf', [FarmController::class, 'pdf'])->name('farm.pdf');
     Route::get('farms-excel', [FarmController::class, 'excel'])->name('farm.excel');
+
+    Route::resource('employee',EmployeeController::class);
+    Route::post('employee-data',[EmployeeController::class,'data']);
+
+    Route::get('employees-pdf', [EmployeeController::class, 'pdf'])->name('employee.pdf');
+    Route::get('employees-excel', [EmployeeController::class, 'excel'])->name('employee.excel');
 
 });
