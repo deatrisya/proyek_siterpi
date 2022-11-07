@@ -1,4 +1,4 @@
-@extends('layouts.app')
+a@extends('layouts.app')
 @section('title', 'Pegawai')
 @section('content')
 <div class="pagetitle">
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" value="{{old('nama')}}" required>
+                <input type="text" class="form-control text-capitalize" id="nama" name="nama" value="{{old('nama')}}" required>
                 @error('nama')
                 <small class="text-danger nama">{{ $message }}</small>
                 @enderror
@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{old('tempat_lahir')}}" required>
+                <input type="text" class="form-control text-capitalize" id="tempat_lahir" name="tempat_lahir" value="{{old('tempat_lahir')}}" required>
                 @error('tempat_lahir')
                 <small class="text-danger tempat_lahir">{{ $message }}</small>
                 @enderror

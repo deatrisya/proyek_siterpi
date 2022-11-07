@@ -14,6 +14,6 @@ class Drug extends Model
     ];
     public function drugHistory()
     {
-        return $this->hasMany(Drughistory::class,'obat_id');
+        return $this->hasMany(Drughistory::class,'drug_id');
     }
 }

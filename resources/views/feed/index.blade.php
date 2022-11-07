@@ -1,15 +1,16 @@
 @extends('layouts.app')
-@section('title', 'User')
+@section('title', 'Pakan')
 @section('css')
     <link rel="stylesheet" href="{{ asset('admin/vendor/datatable/datatables.min.css') }}">
 @endsection
 @section('content')
     <div class="pagetitle">
-        <h1>User</h1>
+        <h1>Pakan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                <li class="breadcrumb-item active">User</li>
+                <li class="breadcrumb-item">Master Pakan</a></li>
+                <li class="breadcrumb-item active">Pakan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -19,19 +20,16 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data User</h5>
-                        <a href="{{ route('user.create') }}" class="btn btn-primary mb-4">Tambah User</a>
-
-
+                        <h5 class="card-title">Data Pakan</h5>
+                        <a href="{{ route('feed.create') }}" class="btn btn-primary mb-4">Tambah Pakan</a>
                         <!-- Table with stripped rows -->
                         <div class="table-responsive">
-                            <table class="table" id="userData" width="100%">
+                            <table class="table" id="feedData" width="100%" >
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Foto</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Username</th>
+                                        <th scope="col">Nama Pakan</th>
+                                        <th scope="col">Stok Akhir</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -42,34 +40,32 @@
                             </table>
                         </div>
                         <!-- End Table with stripped rows -->
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
 @endsection
 @section('js')
     <script src="{{ asset('admin/vendor/datatable/jquery-datatables.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/datatable/datatables.min.js') }}"></script>
     <script>
-        $('#menu-user').removeClass('collapsed');
+        $('#feed-nav').removeClass('collapsed');
+        $('.sidebar-feed').addClass('show');
+        $('#menu-feed').addClass('active');
         filterDate();
         function filterDate(params) {
-            $('#userData').DataTable({
+            $('#feedData').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "responsive": true,
                 "destroy": true,
                 "ajax": {
-                    "url": base_url + "/user-data",
+                    "url": base_url + "/feed-data",
                     "dataType": "json",
                     "type": "post",
                     "data": {
                         _token: web_token,
-
                     }
                 },
                 "columns": [{
@@ -77,13 +73,10 @@
                         "name": "id"
                     },
                     {
-                        "data": "foto"
+                        "data": "nama_pakan"
                     },
                     {
-                        "data": "name"
-                    },
-                    {
-                        "data": "username"
+                        "data": "stok_akhir"
                     },
                     {
                         "data": "options"
@@ -91,6 +84,5 @@
                 ]
             });
         }
-
     </script>
 @endsection
