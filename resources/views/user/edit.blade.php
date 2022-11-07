@@ -15,44 +15,50 @@
             <h5 class="card-title">Edit Data User</h5>
 
             <!-- Multi Columns Form -->
-            <form class="row g-3" method="POST" action="{{ route('user.update',$user->id) }}">
+            <form class="row g-3" method="POST" action="{{ route('user.update',$user->id) }}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="col-md-3">
                     <label for="inputFoto" class="form-label">Foto</label>
-                    <input type="text" class="form-control" id="nis" name="nis" value="{{ $user->foto }}" readonly>
+                    <input type="file" class="form-control" id="foto" name="foto" value="{{ $user->foto }}">
+                    <img height="100px" width="100px" src="{{asset('storage/'.$user->foto)}}" alt="gambar profil" >
                     @error('foto')
-                        <small class="text-danger error_nis">{{ $message }}</small>
+                        <small class="text-danger error_foto">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="col-md-3">
                     <label for="inputNama" class="form-label">Nama</label>
-                    <input type="text" class="form-control" id="formNama" name="formNama" value="{{ $user->nama }}" readonly>
-                    @error('nama')
-                        <small class="text-danger error_nis">{{ $message }}</small>
+                    <input type="text" class="form-control text-capitalize" id="name" name="name" value="{{ $user->name }}" required>
+                    @error('name')
+                        <small class="text-danger error_name">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="col-md-3">
                     <label for="inputUsername" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="formUsername" name="formUsername" value="{{ $user->username }}" readonly>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}" required>
                     @error('username')
-                        <small class="text-danger error_nis">{{ $message }}</small>
+                        <small class="text-danger error_username">{{ $message }}</small>
                     @enderror
                 </div>
 
                 <div class="col-md-3">
-                    <label for="inputPassword" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="formPassword" name="formPassword" value="{{ $user->password }}" readonly>
+                    <label for="inputPassword" class="form-label">Ganti Password</label>
+                    <input type="password" class="form-control" id="password" name="password" >
                     @error('password')
-                        <small class="text-danger error_nis">{{ $message }}</small>
+                        <small class="text-danger error_password">{{ $message }}</small>
                     @enderror
+                </div>
+                <div class="col-md-3">
+                    <label for="inputPassword" class="form-label">Konfirmasi Password</label>
+                    <input type="password" class="form-control" id="password" name="password_confirmation" >
+
                 </div>
 
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{route('farm.index')}}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{route('user.index')}}" class="btn btn-secondary">Kembali</a>
                 </div>
             </form><!-- End Multi Columns Form -->
 
@@ -62,6 +68,6 @@
 @endsection
 @section('js')
     <script>
-        $('#menu-farm').removeClass('collapsed');
+        $('#menu-user').removeClass('collapsed');
     </script>
 @endsection

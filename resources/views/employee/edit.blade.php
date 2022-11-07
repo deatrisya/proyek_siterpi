@@ -28,7 +28,7 @@
 
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" name="nama" value="{{$employee->nama}}" required>
+                <input type="text" class="form-control text-capitalize" id="nama" name="nama" value="{{$employee->nama}}" required>
                  @error('nama')
                 <small class="text-danger nama">{{ $message }}</small>
                 @enderror
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="{{$employee->tempat_lahir}}" required>
+                <input type="text" class="form-control text-capitalize" id="tempat_lahir" name="tempat_lahir" value="{{$employee->tempat_lahir}}" required>
                 @error('tempat_lahir')
                 <small class="text-danger tempat_lahir">{{ $message }}</small>
                 @enderror

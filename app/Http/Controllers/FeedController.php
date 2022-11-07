@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feed;
 use Illuminate\Http\Request;
 
 class FeedController extends Controller
@@ -13,7 +14,8 @@ class FeedController extends Controller
      */
     public function index()
     {
-        //
+        $data['feed'] = Feed::orderBy('nama_pakan');
+        return view('feed.index');
     }
 
     /**
@@ -21,9 +23,26 @@ class FeedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function data(Request $request)
+    {
+        $feed = Feed::where('id', '!=', null);
+
+        return datatables($feed)
+            ->addIndexColumn()
+            ->addColumn('options', function ($row) {
+                $act['edit'] = route('feed.edit', ['feed' => $row->id]);
+                $act['data'] = $row;
+
+                return view('feed.options', $act)->render();
+            })
+            ->escapeColumns([])
+            ->make(true);
+    }
     public function create()
     {
-        //
+        return view('feed.create');
     }
 
     /**
@@ -34,7 +53,25 @@ class FeedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate(
+                [
+                   'nama_pakan' => 'required|string',
+                   'stok_akhir' => 'required|numeric',
+                ],
+                [],
+            );
+
+            $feed = new Feed;
+            $feed->nama_pakan = $request->nama_pakan;
+            $feed->stok_akhir = $request->stok_akhir;
+
+            $feed->save();
+            return redirect()->route('feed.index')->with(['message' => 'Data berhasil di simpan.']);
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->route('feed.index')->with(['message' => 'Data gagal di simpan.']);
+        }
     }
 
     /**
@@ -56,19 +93,38 @@ class FeedController extends Controller
      */
     public function edit($id)
     {
-        //
+        $feed = Feed::find($id);
+        return view('feed.edit',compact('feed'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate(
+                [
+                   'nama_pakan' => 'required|string',
+                //    'stok_akhir' => 'required|numeric',
+                ],
+                [],
+            );
+
+            $feed = Feed::find($id);
+            $feed->nama_pakan = $request->nama_pakan;
+            // $feed->stok_akhir = $request->stok_akhir;
+
+            $feed->save();
+            return redirect()->route('feed.index')->with(['message' => 'Data berhasil diperbarui.']);
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->route('feed.index')->with(['message' => 'Data gagal diperbarui.']);
+        }
     }
 
     /**
@@ -79,6 +135,11 @@ class FeedController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $feed = Feed::find($id);
+        if ($feed->feedHistory()->exists()) {
+            return redirect()->route('feed.index')->with(['error' => 'Data gagal dihapus.']);
+        }
+        $feed->delete();
+        return redirect()->route('feed.index')->with(['message' => 'Data berhasil dihapus.']);
     }
 }

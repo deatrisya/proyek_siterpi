@@ -24,12 +24,12 @@
       <!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" id="feed-nav">
           <i class="bi bi-menu-button-wide"></i><span>Master Pakan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse sidebar-feed" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html" id="menu-feed">
+            <a href="{{route('feed.index')}}" id="menu-feed">
               <i class="bi bi-circle"></i><span>Pakan</span>
             </a>
           </li>
@@ -60,7 +60,9 @@
       </li>
 
       <li class="nav-item">
-          <span>User</span>
+        <a class="nav-link collapsed " href="{{route('user.index')}}" id="menu-user">
+            <i class="bi bi-person"></i>
+            <span>User</span>
         </a>
       </li>
       <!-- End Forms Nav -->

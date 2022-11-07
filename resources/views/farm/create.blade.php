@@ -5,7 +5,7 @@
         <h1>Sapi</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                 <li class="breadcrumb-item active">Sapi</li>
             </ol>
         </nav>
@@ -17,7 +17,7 @@
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="{{ route('farm.store') }}">
                 @csrf
-                
+
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Jenis Kelamin</label>
                     <select id="inputState" class="form-select" name="jk" id="jk">

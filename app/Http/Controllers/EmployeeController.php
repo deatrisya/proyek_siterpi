@@ -7,7 +7,6 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -91,9 +90,9 @@ class EmployeeController extends Controller
 
             $employee = new Employee;
             $employee->nip = $employee->nip;
-            $employee->nama = Str::ucfirst($request->nama);
+            $employee->nama = $request->nama;
             $employee->jk = $request->jk;
-            $employee->tempat_lahir =Str::ucfirst($request->tempat_lahir);
+            $employee->tempat_lahir =$request->tempat_lahir;
             $employee->tgl_lahir = $request->tgl_lahir;
 
             if ($request->file('foto')) {
@@ -161,9 +160,9 @@ class EmployeeController extends Controller
 
             $employee = Employee::find($id);
             $employee->nip = $employee->nip;
-            $employee->nama = Str::ucfirst($request->nama);
+            $employee->nama = $request->nama;
             $employee->jk = $request->jk;
-            $employee->tempat_lahir =Str::ucfirst($request->tempat_lahir);
+            $employee->tempat_lahir =$request->tempat_lahir;
             $employee->tgl_lahir = $request->tgl_lahir;
 
             if ($request->hasFile('foto')) {

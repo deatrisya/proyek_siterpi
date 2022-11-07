@@ -41,12 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    public function feedHistory(){
 
+    public function feedHistory(){
+        return $this->hasMany(feedHistory::class,'feed_id');
     }
     public function drugHistory()
     {
-        return $this->hasMany(Drughistory::class,'obat_id');
+        return $this->hasMany(Drughistory::class,'drug_id');
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -19,12 +21,9 @@ class UserController extends Controller
         return view('user.index', $data);
     }
 
-    public function data(Request $request){
+    public function data(Request $request)
+    {
         $user = User::where('id', '!=', null);
-
-        if ($request->status) {
-            $user->where('status', $request->status);
-        }
 
         return datatables($user)
             ->addIndexColumn()
@@ -33,6 +32,9 @@ class UserController extends Controller
                 $act['data'] = $row;
 
                 return view('user.options', $act)->render();
+            })
+            ->addColumn('foto', function ($d) {
+                return '<img src="' . asset('storage/' . $d->foto) . '"' . 'alt="foto" width="100px" height="100px">';
             })
             ->escapeColumns([])
             ->make(true);
@@ -59,23 +61,24 @@ class UserController extends Controller
         try {
             $request->validate(
                 [
-                    'foto' => 'required',
-                    'name' => 'required|string',
-                    'username' => 'required|string|max:10',
-                    'password' => 'min:8|nullable'
-                ],[],
+                    'foto' => 'required|image|mimes:png,jpg,jpeg|max:2048',
+                    'name' => 'required|regex:/^[\pL\s]+$/u',
+                    'username' => 'required|string|unique:users',
+                    'password' => 'required|min:8'
+                ],
+                [],
             );
 
             $user = new User;
 
             $user->name = $request->name;
             $user->username = $request->username;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
 
-            if ($request->file('foto_user')){
-                $image_name = $request ->file('foto_user')->store('foto_user','public');
+            if ($request->file('foto')) {
+                $image_name = $request->file('foto')->store('foto_user', 'public');
             }
-            $user -> foto = $image_name;
+            $user->foto = $image_name;
 
             $user->save();
 
@@ -121,26 +124,39 @@ class UserController extends Controller
         try {
             $request->validate(
                 [
-                    'foto' => 'required',
-                    'name' => 'required|string',
-                    'username' => 'required|string|max:10',
-                    'password' => 'min:8|nullable'
-                ],[],
+                    'name' => 'required|regex:/^[\pL\s]+$/u',
+                    'username' => 'required|string|unique:users,username,'.$id,
+                    'password' => 'min:8|confirmed|nullable'
+                ],
+                [],
             );
 
             $user = new User;
             $user = User::findOrFail($id);
-            if ($request->hasFile('foto')) {
-                if ($user->foto && file_exists(storage_path('app/public/'.$user->foto))) {
-                    Storage::delete('public/'.$user->foto);
-                }
-                $image_name = $request->file('foto')->store('user','public');
-                $user->foto = $image_name;
-            }
+
 
             $user->name = $request->name;
             $user->username = $request->username;
-            $user->password = $request->password;
+
+            if ($request->hasFile('foto')) {
+                $request->validate(
+                    [
+                        'foto' => 'image|max:2048|mimes:png,jpg,jpeg',
+                    ],
+                );
+                if ($user->foto && file_exists(storage_path('app/public/' . $user->foto))) {
+                    Storage::delete('public/' . $user->foto);
+                }
+
+                $image_name = $request->file('foto')->store('foto_user', 'public');
+                $user->foto = $image_name;
+            }
+            if ($request->password && $request->password_confirmation) {
+
+                $user->password = Hash::make($request->password);
+            }
+
+
             $user->save();
 
 
@@ -160,14 +176,22 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-         if ($user->drugHistory()->exists()) {
-             return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus.']);
-         }
-         if ($user->feedHistory()->exists()) {
-            return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus.']);
-        }
-        $user->delete();
 
-        return redirect()->route('user.index')->with(['message' => 'Data berhasil dihapus.']);
+        $auth =  Auth::user();
+        if ($auth->id == $id ) {
+            return redirect()->route('user.index')->with(['message' => 'Data gagal dihapus,dikarenakan user sedang digunakan.']);
+        } else {
+            if ($user->drugHistory()->exists()) {
+                return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus.']);
+            }
+            if ($user->feedHistory()->exists()) {
+                return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus.']);
+            }
+            $user->delete();
+            return redirect()->route('user.index')->with(['message' => 'Data berhasil dihapus.']);
+            // delete
+        }
+
     }
 }
+
