@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DrugController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FarmController;
@@ -46,5 +47,6 @@ Route::group(['middleware'=>'auth'],function() {
     Route::resource('feed',FeedController::class);
     Route::post('feed-data',[FeedController::class,'data']);
 
-
+    Route::resource('drug',DrugController::class);
+    Route::post('drug-data',[DrugController::class,'data']);
 });

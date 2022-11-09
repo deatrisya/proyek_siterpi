@@ -181,6 +181,7 @@ class FarmController extends Controller
             $farm->where('status', $request->status);
         }
 
+        $data['status'] = $request->status;
         $data['farm'] = $farm->get();
         return $data;
     }
