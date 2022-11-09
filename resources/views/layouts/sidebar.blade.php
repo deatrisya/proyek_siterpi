@@ -42,12 +42,12 @@
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#form-nav" data-bs-toggle="collapse" href="#" id="drug-nav">
           <i class="bi bi-journal-text"></i><span>Master Obat</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="form-nav" class="nav-content collapse sidebar-drug" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html" id="menu-drug">
+            <a id="menu-drug" href="{{route('drug.index')}}" >
               <i class="bi bi-circle"></i><span>Obat</span>
             </a>
           </li>
