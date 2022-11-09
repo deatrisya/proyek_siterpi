@@ -44,7 +44,7 @@
                         <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="card mb-3">
                                 <div class="d-flex justify-content-center py-2">
-                                    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+                                    <a href="#" class="logo d-flex align-items-center justify-content-center mt-5">
                                         <img src="{{asset('admin/img/logo delvina.svg')}}" style="width: auto" alt="">
                                         {{-- <span class="d-none d-lg-block">Peternakan Sapi CV.Delvina</span> --}}
                                     </a>
@@ -62,7 +62,7 @@
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+
                                                 <input type="text" name="username"
                                                     class="form-control @error('username') is-invalid @enderror"
                                                     id="yourUsername" required value="{{ old('username') }}">
@@ -85,15 +85,15 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-12">
+                                        {{-- <div class="col-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
                                                     value="true" id="rememberMe" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                                            <button class="btn btn-primary btn-primary-success w-100" type="submit">Login</button>
                                         </div>
 
                                     </form>
