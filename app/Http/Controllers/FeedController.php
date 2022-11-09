@@ -70,7 +70,7 @@ class FeedController extends Controller
             return redirect()->route('feed.index')->with(['message' => 'Data berhasil di simpan.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('feed.index')->with(['message' => 'Data gagal di simpan.']);
+            return redirect()->route('feed.index')->with(['error' => 'Data gagal di simpan.']);
         }
     }
 
@@ -123,7 +123,7 @@ class FeedController extends Controller
             return redirect()->route('feed.index')->with(['message' => 'Data berhasil diperbarui.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('feed.index')->with(['message' => 'Data gagal diperbarui.']);
+            return redirect()->route('feed.index')->with(['error' => 'Data gagal diperbarui.']);
         }
     }
 

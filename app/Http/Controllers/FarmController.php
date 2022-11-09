@@ -91,7 +91,7 @@ class FarmController extends Controller
             return redirect()->route('farm.index')->with(['message' => 'Data berhasil di simpan.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('farm.index')->with(['message' => 'Data gagal di simpan.']);
+            return redirect()->route('farm.index')->with(['error' => 'Data gagal di simpan.']);
         }
     }
 
@@ -153,7 +153,7 @@ class FarmController extends Controller
             return redirect()->route('farm.index')->with(['message' => 'Data berhasil diperbarui.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('farm.index')->with(['message' => 'Data gagal diperbarui.']);
+            return redirect()->route('farm.index')->with(['error' => 'Data gagal diperbarui.']);
         }
     }
 
@@ -166,9 +166,6 @@ class FarmController extends Controller
     public function destroy($id)
     {
         $farm = Farm::find($id);
-        // if ($farm->items()->exists()) {
-        //     return redirect()->route('farm.index')->with(['error' => 'Data gagal dihapus.']);
-        // }
         $farm->delete();
 
         return redirect()->route('farm.index')->with(['message' => 'Data berhasil dihapus.']);

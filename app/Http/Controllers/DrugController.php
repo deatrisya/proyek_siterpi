@@ -32,6 +32,7 @@ class DrugController extends Controller
             })
             ->escapeColumns([])
             ->make(true);
+        return view('feed.indexdrug');
     }
 
     /**
