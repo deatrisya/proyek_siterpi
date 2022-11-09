@@ -17,14 +17,18 @@ body {
   background: #f6f9ff;
   color: #444444;
 }
-
+.background-login {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/login-bg.svg);
+}
 a {
-  color: #4154f1;
+  color: #AEC328;
   text-decoration: none;
 }
 
 a:hover {
-  color: #717ff5;
+  color: #AEC328;
   text-decoration: none;
 }
 
@@ -63,7 +67,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #869a05;
 }
 
 /*--------------------------------------------------------------
@@ -76,7 +80,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #AEC328;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -133,7 +137,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-divider {
-  color: #a5c5fe;
+  color: #e0eb9d;
   margin: 0;
 }
 
@@ -252,7 +256,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  color: #869a05;
   font-family: "Poppins", sans-serif;
 }
 
@@ -328,7 +332,7 @@ h6 {
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #869a05;
   transition: 0.3s;
 }
 
@@ -341,7 +345,7 @@ h6 {
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: #849515;
   font-weight: 600;
 }
 
@@ -625,7 +629,7 @@ h6 {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
-  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+  box-shadow: 0px 0px 20px rgba(6, 64, 2, 0.1);
   background-color: #fff;
 }
 
@@ -700,7 +704,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #5d6a0b;
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -710,25 +714,25 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #5d6a0b;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #5d6a0b;
   background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #5d6a0b;
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: #5d6a0b;
   background: #f6f9ff;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #5d6a0b;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
