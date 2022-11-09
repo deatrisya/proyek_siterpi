@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Feedhistory extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable = [
         'user_id',
-        'pakan_id',
+        'feed_id',
         'tanggal',
         'masuk',
         'keluar'
     ];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function feedHistory()
+    public function feed()
     {
-        return $this->hasMany(Feedhistory::class,'feed_id');
+        return $this->belongsTo(Feed::class);
     }
-
 }

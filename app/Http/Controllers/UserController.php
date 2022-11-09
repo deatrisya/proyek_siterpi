@@ -85,7 +85,7 @@ class UserController extends Controller
             return redirect()->route('user.index')->with(['message' => 'Data berhasil di simpan.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('user.index')->with(['message' => 'Data gagal di simpan.']);
+            return redirect()->route('user.index')->with(['error' => 'Data gagal di simpan.']);
         }
     }
 
@@ -163,7 +163,7 @@ class UserController extends Controller
             return redirect()->route('user.index')->with(['message' => 'Data berhasil diperbarui.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('user.index')->with(['message' => 'Data gagal diperbarui.']);
+            return redirect()->route('user.index')->with(['error' => 'Data gagal diperbarui.']);
         }
     }
 
@@ -179,7 +179,7 @@ class UserController extends Controller
 
         $auth =  Auth::user();
         if ($auth->id == $id ) {
-            return redirect()->route('user.index')->with(['message' => 'Data gagal dihapus,dikarenakan user sedang digunakan.']);
+            return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus,dikarenakan user sedang digunakan.']);
         } else {
             if ($user->drugHistory()->exists()) {
                 return redirect()->route('user.index')->with(['error' => 'Data gagal dihapus.']);
