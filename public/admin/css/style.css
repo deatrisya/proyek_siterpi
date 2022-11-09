@@ -17,6 +17,15 @@ body {
   background: #f6f9ff;
   color: #444444;
 }
+.color-success {
+    color:#AEC328 ;
+}
+
+.btn-primary-success {
+    background-color: #869a05;
+    border-color: #869a05;
+}
+
 .background-login {
     background-size: cover;
     background-repeat: no-repeat;
@@ -755,7 +764,7 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #012970;
+  color: #5d6a0b;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
@@ -770,11 +779,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #869a05;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: #869a05;
 }
 
 /*--------------------------------------------------------------
