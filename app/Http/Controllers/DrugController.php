@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Drug;
 use Illuminate\Http\Request;
 
 class DrugController extends Controller
@@ -13,7 +14,24 @@ class DrugController extends Controller
      */
     public function index()
     {
-        //
+        $data['drug'] = Drug::orderBy('nama_obat');
+        return view('drug.index');
+    }
+
+    public function data(Request $request)
+    {
+        $drug = Drug::where('id', '!=', null);
+
+        return datatables($drug)
+            ->addIndexColumn()
+            ->addColumn('options', function($row){
+                $act['edit'] = route('drug.edit', ['drug' => $row->id]);
+                $act['data'] = $row;
+
+                return view('drug.options', $act)->render();
+            })
+            ->escapeColumns([])
+            ->make(true);
     }
 
     /**
@@ -23,7 +41,7 @@ class DrugController extends Controller
      */
     public function create()
     {
-        //
+        return view('drug.create');
     }
 
     /**
@@ -34,7 +52,25 @@ class DrugController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $request->validate(
+                [
+                   'nama_obat' => 'required|string',
+                   'stok_akhir' => 'required|numeric',
+                ],
+                [],
+            );
+
+            $drug = new Drug;
+            $drug->nama_obat = $request->nama_obat;
+            $drug->stok_akhir = $request->stok_akhir;
+
+            $drug->save();
+            return redirect()->route('drug.index')->with(['message' => 'Data berhasil di simpan.']);
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->route('drug.index')->with(['message' => 'Data gagal di simpan.']);
+        }
     }
 
     /**
@@ -56,7 +92,8 @@ class DrugController extends Controller
      */
     public function edit($id)
     {
-        //
+        $drug = Drug::find($id);
+        return view('drug.edit',compact('drug'));
     }
 
     /**
@@ -68,7 +105,25 @@ class DrugController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate(
+                [
+                   'nama_obat' => 'required|string',
+                //    'stok_akhir' => 'required|numeric',
+                ],
+                [],
+            );
+
+            $drug = Drug::find($id);
+            $drug->nama_obat = $request->nama_obat;
+            // $drug->stok_akhir = $request->stok_akhir;
+
+            $drug->save();
+            return redirect()->route('drug.index')->with(['message' => 'Data berhasil diperbarui.']);
+        } catch (\Throwable $th) {
+            throw $th;
+            return redirect()->route('drug.index')->with(['message' => 'Data gagal diperbarui.']);
+        }
     }
 
     /**
@@ -79,6 +134,11 @@ class DrugController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $drug = Drug::find($id);
+        if ($drug->drugHistory()->exists()) {
+            return redirect()->route('drug.index')->with(['error' => 'Data gagal dihapus.']);
+        }
+        $drug->delete();
+        return redirect()->route('drug.index')->with(['message' => 'Data berhasil dihapus.']);
     }
 }

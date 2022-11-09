@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+    <title>Login - Peternakan CV Delvina</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('admin/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('admin/img/logo perusahaan.png') }}" rel="icon">
     <link href="{{ asset('admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -32,7 +32,7 @@
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="background-login">
 
     <main>
         <div class="container">
@@ -40,20 +40,17 @@
             <section
                 class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">Peternakan Sapi CV.Delvina</span>
-                                </a>
-                            </div><!-- End Logo -->
-
+                    <div class="row justify-content-left">
+                        <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div class="card mb-3">
+                                <div class="d-flex justify-content-center py-2">
+                                    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+                                        <img src="{{asset('admin/img/logo delvina.svg')}}" style="width: auto" alt="">
+                                        {{-- <span class="d-none d-lg-block">Peternakan Sapi CV.Delvina</span> --}}
+                                    </a>
+                                </div><!-- End Logo -->
 
                                 <div class="card-body">
-
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
