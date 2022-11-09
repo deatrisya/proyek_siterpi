@@ -1,4 +1,4 @@
-a@extends('layouts.app')
+@extends('layouts.app')
 @section('title', 'Pegawai')
 @section('content')
 <div class="pagetitle">

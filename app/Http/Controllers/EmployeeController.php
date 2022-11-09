@@ -104,7 +104,7 @@ class EmployeeController extends Controller
             return redirect()->route('employee.index')->with(['message' => 'Data berhasil di simpan.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('employee.index')->with(['message' => 'Data gagal di simpan.']);
+            return redirect()->route('employee.index')->with(['error' => 'Data gagal di simpan.']);
         }
     }
 
@@ -181,7 +181,7 @@ class EmployeeController extends Controller
             return redirect()->route('employee.index')->with(['message' => 'Data berhasil diperbarui.']);
         } catch (\Throwable $th) {
             throw $th;
-            return redirect()->route('employee.index')->with(['message' => 'Data gagal diperbarui.']);
+            return redirect()->route('employee.index')->with(['error' => 'Data gagal diperbarui.']);
         }
     }
 

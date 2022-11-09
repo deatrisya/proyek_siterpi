@@ -13,7 +13,7 @@ class DrugController extends Controller
      */
     public function index()
     {
-        //
+        return view('feed.indexdrug');
     }
 
     /**
