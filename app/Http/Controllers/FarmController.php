@@ -69,7 +69,7 @@ class FarmController extends Controller
         try {
             $request->validate(
                 [
-
+                    'nis' => 'required|numeric',
                     'jk' => 'required|string',
                     'status' => 'required|string',
                     'kondisi' => 'required|string',
@@ -80,7 +80,7 @@ class FarmController extends Controller
             );
 
             $farm = new Farm;
-            $farm->nis = $farm->nis;
+            $farm->nis = $request->nis;
             $farm->jk = $request->jk;
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
@@ -133,11 +133,9 @@ class FarmController extends Controller
         try {
             $request->validate(
                 [
-                    // 'nis' => 'required',
                     'jk' => 'required',
                     'status' => 'string|required',
                     'kondisi' => 'string|required',
-                    // 'keterangan' => 'string|required'
                 ],
                 [],
                 $attributes

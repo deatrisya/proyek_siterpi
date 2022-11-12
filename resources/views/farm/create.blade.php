@@ -19,6 +19,20 @@
                 @csrf
 
                 <div class="col-md-3">
+                    <label for="inputState" class="form-label">Nomor Induk Sapi</label>
+                    <input type="number" class="form-control" id="nis" name="nis" value="{{old('nis')}}">
+                    @error('nis')
+                        <small class="text-danger nis">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="col-md-3">
+                    <label for="inputState" class="form-label">Tanggal Masuk</label>
+                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ date("Y-m-d") }}">
+                    @error('tanggal')
+                        <small class="text-danger tanggal">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="col-md-3">
                     <label for="inputState" class="form-label">Jenis Kelamin</label>
                     <select id="inputState" class="form-select" name="jk" id="jk">
                         <option value=""> - Pilih Jenis Kelamin -</option>
@@ -51,7 +65,7 @@
                         <small class="text-danger kondisi">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <label for="inputAddress" class="form-label">Keterangan</label>
                     <br>
                     <small class="text-danger">Kosongi bila kondisi sapi sehat</small>
@@ -59,7 +73,7 @@
                     @error('keterangan')
                     <small class="text-danger keterangan">{{ $message }}</small>
                     @enderror
-                  </div>
+                </div>
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="{{route('farm.index')}}" class="btn btn-secondary">Kembali</a>

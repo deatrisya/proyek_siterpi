@@ -8,7 +8,7 @@ use Alfa6661\AutoNumber\AutoNumberTrait;
 
 class Farm extends Model
 {
-    use AutoNumberTrait;
+    // use AutoNumberTrait;
     use HasFactory;
     protected $fillable =[
         'nis',
@@ -17,16 +17,18 @@ class Farm extends Model
         'kondisi',
         'keterangan'
     ];
-    public function getAutoNumberOptions()
+    // public function getAutoNumberOptions(){
+    //     return [
+    //         'nis' => [
+    //             'format' => function (){
+    //                 return 'S'. '?';
+    //             },
+    //             'length' => 4,
+    //         ]
+    //     ];
+    // }
+    public function cowHealth()
     {
-        return [
-            'nis' => [
-                'format' => function (){
-                    return 'SDV_'.date('dmy'). '?';
-                },
-                'length' => 4,
-            ]
-        ];
+        return $this->hasMany(CowHealthHistory::class);
     }
-
 }
