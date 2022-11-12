@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html" id="menu-detail-drug">
+                    <a href="{{ route('historydrug.index')}}" id="menu-detail-drug">
                         <i class="bi bi-circle"></i><span>Stok Obat</span>
                     </a>
                 </li>
