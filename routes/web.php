@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DrugController;
+use App\Http\Controllers\DrughistoryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FarmController;
@@ -47,15 +48,20 @@ Route::group(['middleware'=>'auth'],function() {
 
     Route::resource('feed',FeedController::class);
     Route::post('feed-data',[FeedController::class,'data']);
-    
+
     Route::resource('drug',DrugController::class);
     Route::post('drug-data',[DrugController::class,'data']);
-    
+
+    Route::resource('historydrug',DrughistoryController::class);
+    Route::post('hisdrug-data',[DrughistoryController::class,'data']);
+    Route::get('hisdrugs-pdf', [DrughistoryController::class, 'pdf'])->name('drughistory.pdf');
+    Route::get('hisdrugs-excel', [DrughistoryController::class, 'excel'])->name('drughistory.excel');
+
     Route::resource('historyfeed',FeedhistoryController::class);
     Route::post('hisfeed-data',[FeedhistoryController::class,'data']);
     Route::get('hisfeeds-pdf', [FeedhistoryController::class, 'pdf'])->name('feedhistory.pdf');
     Route::get('hisfeeds-excel', [FeedhistoryController::class, 'excel'])->name('feedhistory.excel');
-    
+
 
 
 });
