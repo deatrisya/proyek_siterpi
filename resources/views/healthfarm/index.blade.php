@@ -1,16 +1,16 @@
 @extends('layouts.app')
-@section('title', 'Stok Pakan')
+@section('title', 'Riwayat Kesehatan Sapi')
 @section('css')
     <link rel="stylesheet" href="{{ asset('admin/vendor/datatable/datatables.min.css') }}">
 @endsection
 @section('content')
     <div class="pagetitle">
-        <h1>Stok Pakan</h1>
+        <h1>Riwayat Kesehatan Sapi</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item">Master Pakan</a></li>
-                <li class="breadcrumb-item active">Stok Pakan</li>
+                <li class="breadcrumb-item">Master Sapi</a></li>
+                <li class="breadcrumb-item active">Riwayat Kesehatan Sapi</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,18 +20,18 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Stok Pakan</h5>
-                        <a href="{{ route('historyfeed.create') }}" class="btn btn-primary mb-4">Tambah Stok Pakan</a>
+                        <h5 class="card-title">Data Riwayat Kesehatan Sapi</h5>
+                        <a href="{{ route('healthfarm.create') }}" class="btn btn-primary mb-4">Tambah Riwayat Kesehatan</a>
                         <!-- Table with stripped rows -->
                         <div class="row align-items-end mb-5">
                             <div class="col-md-3">
                                 <div class="">
-                                    <label for="floatingSelectGrid">Pilih Nama Pakan</label>
-                                    <select class="form-select" id="feed_id" name="feed_id">
-                                        <option value="">-- Pilih Nama Pakan --</option>
-                                        @foreach ($feed as $data)
+                                    <label for="floatingSelectGrid">Nomor Sapi</label>
+                                    <select class="form-select" id="farm_id" name="farm_id">
+                                        <option value="">-- Pilih Nomor Sapi --</option>
+                                        @foreach ($farm as $data)
                                             <option value="{{ $data->id }}"
-                                                @if (old('feed_id') == $data->id) selected @endif>{{ $data->nama_pakan }}
+                                                @if (old('farm_id') == $data->id) selected @endif>{{ $data->nis}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -54,28 +54,27 @@
                             <div class="col">
                                 <button class="btn mb-0 btn-primary" onclick="filterDate()">Cari</button>
                                 <a href="javascript:;" class="btn mb-0 btn-danger text-sm"
-                                    onclick="printData(`{{ route('feedhistory.pdf') }}`)">
+                                    onclick="printData(`{{ route('healthfarm.pdf') }}`)">
                                     <i class="bi bi-file-earmark-pdf text-lg me-1"></i>
                                     PDF
                                 </a>
                                 <a href="javascript:;" class="btn mb-0 btn-success text-sm"
-                                    onclick="printData(`{{ route('feedhistory.excel') }}`)">
+                                    onclick="printData(`{{ route('healthfarm.excel') }}`)">
                                     <i class="bi bi-file-earmark-excel text-lg"></i>
                                     Excel
                                 </a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="hisfeedData" width="100%">
+                            <table class="table" id="healthfarmData" width="100%">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Nama User</th>
-                                        <th scope="col">Nama Pakan</th>
+                                        <th scope="col">NIS</th>
                                         <th scope="col">Tanggal</th>
-                                        <th scope="col">Masuk</th>
-                                        <th scope="col">Keluar</th>
-                                        <th scope="col">Opsi</th>
+                                        <th scope="col">Keterangan Penyakit</th>
+                                        <th scope="col">Keterangan Obat</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,26 +94,26 @@
     <script src="{{ asset('admin/vendor/datatable/jquery-datatables.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/datatable/datatables.min.js') }}"></script>
     <script>
-        $('#feed-nav').removeClass('collapsed');
-        $('.sidebar-feed').addClass('show');
-        $('#menu-detail-feed').addClass('active');
+        $('#menu-health-farm').removeClass('collapsed');
+        // $('.sidebar-feed').addClass('show');
+        // $('#menu-health-farm').addClass('active');
         filterDate();
 
         function filterDate(params) {
-            $('#hisfeedData').DataTable({
+            $('#healthfarmData').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "responsive": true,
                 "destroy": true,
                 "ajax": {
-                    "url": base_url + "/hisfeed-data",
+                    "url": base_url + "/healthfarm-data",
                     "dataType": "json",
                     "type": "post",
                     "data": {
                         _token: web_token,
                         from_date: $('#from_date').val(), //request:value
                         to_date: $('#to_date').val(),
-                        feed_id: $('#feed_id').val(),
+                        farm_id: $('#farm_id').val(),
                     }
                 },
                 "columns": [{
@@ -122,21 +121,14 @@
                         "name": "id"
                     },
                     {
-                        "data": "user_name",
-                        "name": "users.name"
-                    },
-                    {
-                        "data": "feed_name",
-                        "name": "feeds.nama_pakan"
+                        "data": "cow_name",
+                        "name": "farms.nis"
                     },
                     {
                         "data": "tanggal"
                     },
                     {
-                        "data": "masuk"
-                    },
-                    {
-                        "data": "keluar"
+                        "data": "keterangan"
                     },
                     {
                         "data": "options"
@@ -148,9 +140,10 @@
         function printData(url) {
             var from_date = document.getElementById('from_date').value;
             var to_date = document.getElementById('to_date').value;
-            var feed_id = document.getElementById('feed_id').value;
+            var farm_id = document.getElementById('farm_id').value;
 
-            window.open(url + '?from_date=' + from_date + '&to_date=' + to_date + '&feed_id=' + feed_id);
+            window.open(url + '?from_date=' + from_date + '&to_date=' + to_date + '&farm_id=' + farm_id);
         }
     </script>
 @endsection
+

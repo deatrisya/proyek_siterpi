@@ -8,21 +8,6 @@
                 <h5 class="mb-4 mt-2 text-center">Laporan Data Karyawan</h5>
             </td>
         </tr>
-
-        {{-- <tr>
-            <td class="fs" width="10%">
-                Bahan
-            </td>
-            <td class="fs">: {{ $item->name ?? '' }}</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="fs" width="10%">
-                Gudang
-            </td>
-            <td class="fs">: {{ $warehouse->name ?? '' }}</td>
-            <td></td>
-        </tr> --}}
     </tbody>
 </table>
 <br>

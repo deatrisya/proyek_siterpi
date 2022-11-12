@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CowHealthHistoryController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\DrughistoryController;
 use App\Http\Controllers\EmployeeController;
@@ -62,6 +63,9 @@ Route::group(['middleware'=>'auth'],function() {
     Route::get('hisfeeds-pdf', [FeedhistoryController::class, 'pdf'])->name('feedhistory.pdf');
     Route::get('hisfeeds-excel', [FeedhistoryController::class, 'excel'])->name('feedhistory.excel');
 
-
+    Route::resource('healthfarm',CowHealthHistoryController::class);
+    Route::post('healthfarm-data',[CowHealthHistoryController::class,'data']);
+    Route::get('healthfarm-pdf', [CowHealthHistoryController::class, 'pdf'])->name('healthfarm.pdf');
+    Route::get('healthfarm-excel', [CowHealthHistoryController::class, 'excel'])->name('healthfarm.excel');
 
 });
