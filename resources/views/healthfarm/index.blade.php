@@ -73,7 +73,6 @@
                                         <th scope="col">NIS</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Keterangan Penyakit</th>
-                                        <th scope="col">Keterangan Obat</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>

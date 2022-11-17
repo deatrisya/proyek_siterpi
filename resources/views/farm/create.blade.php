@@ -20,16 +20,16 @@
 
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Nomor Induk Sapi</label>
-                    <input type="number" class="form-control" id="nis" name="nis" value="{{old('nis')}}">
+                    <input type="number" class="form-control" id="nis" name="nis" value="{{old('nis')}}" min="0">
                     @error('nis')
                         <small class="text-danger nis">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Tanggal Masuk</label>
-                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ date("Y-m-d") }}">
-                    @error('tanggal')
-                        <small class="text-danger tanggal">{{ $message }}</small>
+                    <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" value="{{ date("Y-m-d") }}">
+                    @error('tanggal_masuk')
+                        <small class="text-danger tanggal_masuk">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="col-md-3">

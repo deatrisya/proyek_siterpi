@@ -68,4 +68,7 @@ Route::group(['middleware'=>'auth'],function() {
     Route::get('healthfarm-pdf', [CowHealthHistoryController::class, 'pdf'])->name('healthfarm.pdf');
     Route::get('healthfarm-excel', [CowHealthHistoryController::class, 'excel'])->name('healthfarm.excel');
 
+    //ajax
+    Route::get('getFeed/{id}',[HomeController::class,'getFeed']);
+
 });

@@ -23,13 +23,6 @@
                     <small class="text-danger nama_pakan">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="col-4">
-                    <label for="inputAddress" class="form-label">Stok Akhir</label>
-                    <input type="number" class="form-control" name="stok_akhir" id="stok_akhir" value="{{old('stok_akhir')}}" required>
-                    @error('stok_akhir')
-                    <small class="text-danger stok_akhir">{{ $message }}</small>
-                    @enderror
-                </div>
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="{{route('feed.index')}}" class="btn btn-secondary">Kembali</a>
