@@ -57,14 +57,13 @@ class FeedController extends Controller
             $request->validate(
                 [
                    'nama_pakan' => 'required|string',
-                   'stok_akhir' => 'required|numeric',
                 ],
                 [],
             );
 
             $feed = new Feed;
             $feed->nama_pakan = $request->nama_pakan;
-            $feed->stok_akhir = $request->stok_akhir;
+            $feed->stok_akhir = 0;
 
             $feed->save();
             return redirect()->route('feed.index')->with(['message' => 'Data berhasil di simpan.']);
@@ -110,14 +109,14 @@ class FeedController extends Controller
             $request->validate(
                 [
                    'nama_pakan' => 'required|string',
-                //    'stok_akhir' => 'required|numeric',
+
                 ],
                 [],
             );
 
             $feed = Feed::find($id);
             $feed->nama_pakan = $request->nama_pakan;
-            // $feed->stok_akhir = $request->stok_akhir;
+
 
             $feed->save();
             return redirect()->route('feed.index')->with(['message' => 'Data berhasil diperbarui.']);

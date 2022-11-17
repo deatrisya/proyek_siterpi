@@ -17,4 +17,7 @@ class CowHealthHistory extends Model
     {
         return $this->belongsTo(farm::class);
     }
+    public function drugHistories(){
+        return $this->hasMany(Drughistory::class);
+    }
 }

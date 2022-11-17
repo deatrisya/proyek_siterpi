@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDescdrugToCowhealthTable extends Migration
+class AddDescdrugoutToTableDrughistories extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddDescdrugToCowhealthTable extends Migration
      */
     public function up()
     {
-        Schema::table('cow_health_histories', function (Blueprint $table) {
-            // $table->drug_id
+        Schema::table('drughistories', function (Blueprint $table) {
+            $table->unsignedBigInteger('cowhealth_id')->after('keluar');
+            $table->foreign('cowhealth_id')->references('id')->on('cow_health_histories');
         });
     }
 
@@ -25,7 +26,7 @@ class AddDescdrugToCowhealthTable extends Migration
      */
     public function down()
     {
-        Schema::table('cow_health_histories', function (Blueprint $table) {
+        Schema::table('drughistories', function (Blueprint $table) {
             //
         });
     }

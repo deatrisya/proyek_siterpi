@@ -55,6 +55,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">NIS</th>
+                                    <th scope="col">Tanggal Masuk</th>
                                     <th scope="col">Jenis Kelamin</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Kondisi</th>
@@ -106,6 +107,9 @@
                     },
                     {
                         "data": "nis"
+                    },
+                    {
+                        "data": "tanggal_masuk"
                     },
                     {
                         "data": "jk"

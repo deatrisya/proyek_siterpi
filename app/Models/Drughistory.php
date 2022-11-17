@@ -13,7 +13,8 @@ class Drughistory extends Model
         'obat_id',
         'tanggal',
         'masuk',
-        'keluar'
+        'keluar',
+        'cowhealth_id'
     ];
     public function user(){
         return $this->belongsTo(User::class);
@@ -21,5 +22,8 @@ class Drughistory extends Model
     public function drug()
     {
         return $this->belongsTo(Drug::class);
+    }
+    public function cowHealth() {
+        return $this->belongsTo(CowHealthHistory::class);
     }
 }

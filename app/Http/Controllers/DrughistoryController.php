@@ -32,6 +32,7 @@ class DrughistoryController extends Controller
         ->selectRaw('drughistories.*, users.name as user_name, drugs.nama_obat as drug_name')
         ->join('users', 'users.id', '=', 'drughistories.user_id')
         ->join('drugs', 'drugs.id', '=', 'drughistories.drug_id');
+        // ->join('farms','farms.id', '=','drughistories.')
 
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
@@ -90,6 +91,7 @@ class DrughistoryController extends Controller
             $request->validate([
                 'user_id' => 'required',
                 'drug_id' => 'required',
+                'cowhealth_id' => 'nullable',
                 'tanggal' => 'required|date',
                 'masuk' => 'required|numeric',
                 'keluar' => 'required|numeric'
@@ -98,6 +100,7 @@ class DrughistoryController extends Controller
             $drughis =  new Drughistory;
             $drughis->user_id = $request->user_id;
             $drughis->drug_id = $request->drug_id;
+            $drughis->cowhealth_id = 8;
             $drughis->tanggal = $request->tanggal;
             $drughis->masuk = $request->masuk;
             $drughis->keluar = $request->keluar;
@@ -152,10 +155,12 @@ class DrughistoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+
     {
         try{
             $request->validate([
                 'drug_id' => 'required',
+                // 'cowhealth_id' => 'required',
                 'tanggal' => 'required|date',
                 'masuk' => 'required|numeric',
                 'keluar' => 'required|numeric'
@@ -164,16 +169,18 @@ class DrughistoryController extends Controller
             $drughis = Drughistory::find($id);
             $drughis->user_id = $request->user_id;
             $drughis->drug_id = $request->drug_id;
+            // $drughis->cowhealth_id = $request->cowhealth_id;
             $drughis->tanggal = $request->tanggal;
             $drughis->masuk = $request->masuk;
             $drughis->keluar = $request->keluar;
+            $drughis->save();
 
             $drug = Drug::select('id')->where('id', $request->drug_id)->first();
             $valueMasuk = Drughistory::where('drughistories.drug_id', '=', $drug->id)->sum('masuk');
             $valueKeluar = Drughistory::where('drughistories.drug_id', '=', $drug->id)->sum('keluar');
 
             $drug->update(['stok_akhir' => $valueMasuk - $valueKeluar]);
-            $drughis->save();
+
             return redirect()->route('historydrug.index')->with(['message' => 'Data berhasil diperbarui']);
         } catch(\Throwable $th){
             throw $th;
