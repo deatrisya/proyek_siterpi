@@ -57,14 +57,13 @@ class DrugController extends Controller
             $request->validate(
                 [
                    'nama_obat' => 'required|string',
-                   'stok_akhir' => 'required|numeric',
                 ],
                 [],
             );
 
             $drug = new Drug;
             $drug->nama_obat = $request->nama_obat;
-            $drug->stok_akhir = $request->stok_akhir;
+            $drug->stok_akhir = 0;
 
             $drug->save();
             return redirect()->route('drug.index')->with(['message' => 'Data berhasil di simpan.']);
@@ -110,14 +109,12 @@ class DrugController extends Controller
             $request->validate(
                 [
                    'nama_obat' => 'required|string',
-                //    'stok_akhir' => 'required|numeric',
                 ],
                 [],
             );
 
             $drug = Drug::find($id);
             $drug->nama_obat = $request->nama_obat;
-            // $drug->stok_akhir = $request->stok_akhir;
 
             $drug->save();
             return redirect()->route('drug.index')->with(['message' => 'Data berhasil diperbarui.']);

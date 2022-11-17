@@ -15,6 +15,7 @@ class Farm extends Model
         'jk',
         'status',
         'kondisi',
+        'tanggal_masuk',
         'keterangan'
     ];
     // public function getAutoNumberOptions(){

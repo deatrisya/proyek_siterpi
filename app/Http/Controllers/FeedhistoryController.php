@@ -87,7 +87,7 @@ class FeedhistoryController extends Controller
      */
     public function store(Request $request)
     {
-   
+
         try {
             $request->validate([
                 'user_id' => 'required',
@@ -154,6 +154,7 @@ class FeedhistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         try {
             $request->validate([
                 'feed_id' => 'required',
@@ -168,13 +169,16 @@ class FeedhistoryController extends Controller
             $feedhis->tanggal = $request->tanggal;
             $feedhis->masuk = $request->masuk;
             $feedhis->keluar = $request->keluar;
+            $feedhis->save();
 
             $feed = Feed::select('id')->where('id', $request->feed_id)->first();
+
             $valueMasuk = Feedhistory::where('feedhistories.feed_id', '=', $feed->id)->sum('masuk');
             $valueKeluar = Feedhistory::where('feedhistories.feed_id', '=', $feed->id)->sum('keluar');
 
-            $feed->update(['stok_akhir' => $valueMasuk - $valueKeluar]);
-            $feedhis->save();
+            $feed->update(['stok_akhir' => $valueMasuk-$valueKeluar]);
+
+
             return redirect()->route('historyfeed.index')->with(['message' => 'Data berhasil diperbarui']);
         } catch (\Throwable $th) {
             throw $th;

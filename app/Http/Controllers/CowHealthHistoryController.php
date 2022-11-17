@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\CowHealthHistory;
+use App\Models\Drug;
+use App\Models\Drughistory;
 use App\Models\Farm;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CowHealthHistoryController extends Controller
@@ -70,8 +73,9 @@ class CowHealthHistoryController extends Controller
     public function create()
     {
         $farm = Farm::all();
+        $drug = Drug::all();
         $healthfarm = CowHealthHistory::all();
-        return view('healthfarm.create',compact('farm','healthfarm'));
+        return view('healthfarm.create',compact('farm','healthfarm','drug'));
     }
 
     /**
@@ -89,8 +93,6 @@ class CowHealthHistoryController extends Controller
                     'tanggal' => 'required|date',
                     'keterangan' => 'required|string'
                 ],[],
-
-
             );
 
             $healthfarm = new CowHealthHistory;
@@ -98,6 +100,28 @@ class CowHealthHistoryController extends Controller
             $healthfarm->tanggal = $request->tanggal;
             $healthfarm->keterangan = $request->keterangan;
             $healthfarm->save();
+
+
+            $farm = Farm::find($request->farm_id);
+            $farm -> kondisi = 'Sakit';
+            // $farm->keterangan = $
+            $farm->save();
+
+            $hisdrug = new Drughistory;
+            $hisdrug->user_id = Auth::id();
+            $hisdrug->drug_id = $request->drug_id;
+            $hisdrug->cowhealth_id = $healthfarm->id;
+            $hisdrug->tanggal = $request->tanggal;
+            $hisdrug->masuk = 0;
+            $hisdrug->keluar = $request->jumlah;
+            $hisdrug->save();
+
+            // $drug = Drug::select('id')->where('id', $request->drug_id)->first();
+            // $valueMasuk = Drughistory::where('drughistories.drug_id', '=', $drug->id)->sum('masuk');
+            // $valueKeluar = Drughistory::where('drughistories.drug_id', '=', $drug->id)->sum('keluar');
+
+            // $drug->update(['stok_akhir' => $valueMasuk - $valueKeluar]);
+            // $drug->save();
 
             return redirect()->route('healthfarm.index')->with(['message' => 'Data berhasil di simpan.']);
         } catch (\Throwable $th) {
@@ -126,8 +150,9 @@ class CowHealthHistoryController extends Controller
     public function edit($id)
     {
         $farm = Farm::all();
+        $drug = Drug::all();
         $healthfarm = CowHealthHistory::find($id);
-        return view('healthfarm.edit',compact('farm','healthfarm'));
+        return view('healthfarm.edit',compact('farm','healthfarm','drug'));
 
     }
 
@@ -173,6 +198,10 @@ class CowHealthHistoryController extends Controller
     public function destroy(Request $request,$id)
     {
         $healthfarm = CowHealthHistory::find($id);
+        if ($healthfarm->drugHistories()->exists()) {
+            return redirect()->route('healthfarm.index')->with(['error' => 'Data gagal dihapus.']);
+        }
         $healthfarm->delete();
+        return redirect()->route('healthfarm.index')->with(['message' => 'Data berhasil dihapus.']);
     }
 }

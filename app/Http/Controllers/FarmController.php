@@ -6,6 +6,7 @@ use App\Exports\FarmExport;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -37,8 +38,13 @@ class FarmController extends Controller
             $farm->where('status', $request->status);
         }
 
+
         return datatables($farm)
             ->addIndexColumn()
+            ->editColumn('tanggal_masuk', function ($d) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d', $d->tanggal_masuk)->format('d-m-Y');
+                return $formatedDate;
+            })
             ->addColumn('options', function ($row) {
                 $act['edit'] = route('farm.edit', ['farm' => $row->id]);
                 $act['data'] = $row;
@@ -70,7 +76,8 @@ class FarmController extends Controller
             $request->validate(
                 [
                     'nis' => 'required|numeric',
-                    'jk' => 'required|string',
+                    'tanggal_masuk' =>'required|date',
+                    'jk' => 'required',
                     'status' => 'required|string',
                     'kondisi' => 'required|string',
                     'keterangan' => 'nullable'
@@ -81,6 +88,7 @@ class FarmController extends Controller
 
             $farm = new Farm;
             $farm->nis = $request->nis;
+            $farm->tanggal_masuk = $request->tanggal_masuk;
             $farm->jk = $request->jk;
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
@@ -134,8 +142,10 @@ class FarmController extends Controller
             $request->validate(
                 [
                     'jk' => 'required',
-                    'status' => 'string|required',
-                    'kondisi' => 'string|required',
+                    'tanggal_masuk' =>'required|date',
+                    'status' => 'required|string',
+                    'kondisi' => 'required|string',
+                    'keterangan' => 'nullable'
                 ],
                 [],
                 $attributes
@@ -143,6 +153,7 @@ class FarmController extends Controller
 
             $farm = Farm::find($id);
             $farm->jk = $request->jk;
+            $farm->tanggal_masuk = $request->tanggal_masuk;
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
             $farm->keterangan = $request->keterangan;

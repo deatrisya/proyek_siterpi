@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'PETERNAKAN CV DELVINA'),
-    'address' => 'Jl. Dusun Kutukan Timur RT.03 RW.05 , Desa Lecari, Kec. Sukorejo, Kab. Pasuruan, Jawa Timur 67161',
+    'name' => env('APP_NAME', 'laravel'),
+    'address' => 'Jl. Dusun Kutukan Timur RT.03 RW.05, Desa Lecari, Kec. Sukorejo, Kab. Pasuruan, Jawa Timur 67161',
     'phone' => '08132121312',
 
     /*
