@@ -53,6 +53,15 @@
                     @enderror
                 </div>
 
+                <div class="col-6">
+                    <label for="inputPosition" class="form-label">Posisi</label>
+                    <select class="form-control @error('position') is-invalid
+                            @enderror" aria-label="Default select example" name="position" id="position" required>
+                                <option @if(old('position')=='Admin')selected @endif value="Admin">Admin</option>
+                                <option value="Manager" @if(old('position')=='Manager')selected @endif>Manager</option>
+                              </select>
+                </div>
+
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="{{route('user.index')}}" class="btn btn-secondary">Kembali</a>

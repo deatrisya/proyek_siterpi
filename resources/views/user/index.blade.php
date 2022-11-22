@@ -32,7 +32,10 @@
                                         <th scope="col">Foto</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Username</th>
+                                        <th scope="col">Posisi</th>
                                         <th scope="col">Opsi</th>
+
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -84,6 +87,9 @@
                     },
                     {
                         "data": "username"
+                    },
+                    {
+                        "data": "position"
                     },
                     {
                         "data": "options"
