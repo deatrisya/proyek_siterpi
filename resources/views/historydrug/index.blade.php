@@ -136,6 +136,9 @@
                         "data": "keluar"
                     },
                     {
+                        "data": "keterangan"
+                    },
+                    {
                         "data": "options"
                     }
                 ]

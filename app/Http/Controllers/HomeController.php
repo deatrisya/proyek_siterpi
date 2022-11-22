@@ -35,13 +35,15 @@ class HomeController extends Controller
         $cownotsold = Farm::where('status','Belum Terjual')->count();
 
         $feed = Feed::all();
+        $medicine = Drug::all();
 
         $data = [
             'today' => $today,
             'date' => $date,
             'cowsold' => $cowsold,
             'cownotsold' => $cownotsold,
-            'feed' => $feed
+            'feed' => $feed,
+            'medicine' => $medicine
         ];
 
         // dd($medicinestok);
@@ -50,6 +52,11 @@ class HomeController extends Controller
 
     public function getFeed($id) {
         $loadData = Feed::find($id);
+        return response()->json($loadData);
+    }
+    
+    public function getMedicine($id) {
+        $loadData = Drug::find($id);
         return response()->json($loadData);
     }
 

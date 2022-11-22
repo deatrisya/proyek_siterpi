@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('css')
-    <link rel="stylesheet" href="{{asset('admin/vendor/select2/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/vendor/select2/select2.min.css') }}">
 @endsection
 @section('content')
 
@@ -59,10 +59,7 @@
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{$cowsold}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">0%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
-
+                                        <h6>{{ $cowsold }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -82,9 +79,8 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>{{$cownotsold}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                        <h6>{{ $cownotsold }}</h6>
+
                                     </div>
                                 </div>
                             </div>
@@ -100,47 +96,52 @@
                                 <h5 class="card-title">Stok Pakan</h5>
                                 <div class="select mb-3">
                                     <label for="">Filter berdasarkan stok</label>
-                                <select class="js-example-basic-single w-100" name="feed_id" id="feed_id">
-                                    <option value="">Pilih Nama Pakan</option>
-                                    @foreach ($feed as $data)
-                                    <option value="{{ $data->id }}"
-                                        @if (old('feed_id') == $data->id) selected @endif>{{ $data->nama_pakan }}
-                                    </option>
-                                    @endforeach
-                                </select>
+                                    <select class="js-example-basic-single w-100" name="feed_id" id="feed_id">
+                                        <option value="">Pilih Nama Pakan</option>
+                                        @foreach ($feed as $data)
+                                            <option value="{{ $data->id }}"
+                                                @if (old('feed_id') == $data->id) selected @endif>{{ $data->nama_pakan }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="d-flex align-items-center"> 
+                                <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        {{-- <h6 id="stok_akhir"></h6> --}}
-                                        <input type="number" class="form-control" id="stok_akhir" name="stok_akhir" value="0">
+                                        <h6 id="stok_akhir">0</h6>
 
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                  <!-- End Medicine Stok Card -->
+                    <!-- End Medicine Stok Card -->
                     <!-- Feed Stok Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
 
                             <div class="card-body">
                                 <h5 class="card-title">Stok Obat</h5>
-
+                                <div class="select mb-3">
+                                    <label for="">Filter berdasarkan stok</label>
+                                    <select class="js-example-basic-single w-100" name="medicine_id" id="medicine_id">
+                                        <option value="">Pilih Nama Obat</option>
+                                        @foreach ($medicine as $data)
+                                            <option value="{{ $data->id }}"
+                                                @if (old('drug_id') == $data->id) selected @endif>{{ $data->nama_obat }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                        <h6 id="stok_obat">0</h6>
                                     </div>
                                 </div>
                             </div>
@@ -148,17 +149,14 @@
                         </div>
                     </div>
                     <!-- End Feed Stok Card -->
-
-
-
-                <!-- End Left side columns -->
+                    <!-- End Left side columns -->
                 </div>
             </div>
         </div>
     </section>
 @endsection
 @section('js')
-<script src="{{asset('admin/vendor/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('admin/vendor/select2/select2.min.js') }}"></script>
     <script>
         $('#menu-dashboard').removeClass('collapsed');
         // In your Javascript (external .js resource or <script> tag)
@@ -177,12 +175,32 @@
         $('select#feed_id').on('change', function(e) {
             var selected_feed = $(this).children("option:selected").val();
             $.ajax({
-                type:"GET",
-                dataType:"json",
-                url:'/getFeed/'+selected_feed,
-                success:function(response){
+                type: "GET",
+                dataType: "json",
+                url: '/getFeed/' + selected_feed,
+                success: function(response) {
                     console.log(response);
-                    $('#stok_akhir').val(response.stok_akhir)
+                    $('#stok_akhir').text(response.stok_akhir)
+                }
+            })
+        })
+
+        $(document).ready(function() {
+            $.ajaxSetup({
+                header: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            })
+        });
+        $('select#medicine_id').on('change', function(e) {
+            var selected_medicine = $(this).children("option:selected").val();
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '/getMedicine/' + selected_medicine,
+                success: function(response) {
+                    console.log(response);
+                    $('#stok_obat').text(response.stok_akhir)
                 }
             })
         })
