@@ -70,5 +70,6 @@ Route::group(['middleware'=>'auth'],function() {
 
     //ajax
     Route::get('getFeed/{id}',[HomeController::class,'getFeed']);
+    Route::get('getMedicine/{id}',[HomeController::class,'getMedicine']);
 
 });

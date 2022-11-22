@@ -55,7 +55,7 @@
                     <div class="col-md-4" >
                         <div class="mb-3">
                             <label for="obat" class="form-label">Pilih Obat</label>
-                            <select class="form-select" aria-label="Default select example" name="drug_id" id="drug_id" required>
+                            <select class="form-select" aria-label="Default select example" name="drug_id[]" id="drug_id" required>
                                 <option value="">-- Pilih Nama Obat --</option>
                                 @foreach ($drug as $data)
                                     <option value="{{ $data->id }}" @if (old('drug_id') == $data->id) selected @endif>
@@ -68,7 +68,7 @@
                     <div class="col-md-3">
                         <div class="mb-3">
                             <label for="obat" class="form-label">Jumlah Obat</label>
-                            <input type="number" class="form-control" id="jumlah" name="jumlah" min="1"
+                            <input type="number" class="form-control" id="jumlah" name="jumlah[]" min="1"
                                 value="{{ old('jumlah') }}" required>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
             '<div class="col-md-4">' +
                     '<div class="mb-3">' +
                         '<label for="obat" class="form-label">Pilih Obat</label>'+
-                        '<select class="form-select" aria-label="Default select example" name="drug_id" id="drug_id" required>'+
+                        '<select class="form-select" aria-label="Default select example" name="drug_id[]" id="drug_id" required>'+
                             '<option value="">-- Pilih Nama Obat --</option>'+
                             '@foreach ($drug as $data)' +
                                 '<option value="{{ $data->id }}" @if (old('drug_id') == $data->id) selected @endif>' +
@@ -119,7 +119,7 @@
                 '<div class="col-md-3">'+
                     '<div class="mb-3">'+
                         '<label for="obat" class="form-label">Jumlah Obat</label>'+
-                        '<input type="number" class="form-control" id="jumlah" name="jumlah" min="1" value="{{ old('jumlah') }}" required>'+
+                        '<input type="number" class="form-control" id="jumlah" name="jumlah[]" min="1" value="{{ old('jumlah') }}" required>'+
                     '</div>'+
                 '</div>'+
                 '<div class="col-md-4">'+
@@ -131,9 +131,9 @@
             '</div>'
 
                 $('#newinput').append(newRowAdd);
-            });
-                $("body").on('click','#deleteRow', function () {
-                    $(this).parents('#row').remove();
-                })
+        });
+        $("body").on('click','#deleteRow', function () {
+            $(this).parents('#row').remove();
+        })
     </script>
 @endsection

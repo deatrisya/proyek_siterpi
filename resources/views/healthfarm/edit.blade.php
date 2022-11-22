@@ -50,6 +50,41 @@
                     <small class="text-danger keterangan">{{ $message }}</small>
                     @enderror
                 </div>
+                <hr>
+                @foreach ($drugHistories as $item)
+                    <div class="row" id="row" >
+                        <div class="col-md-4" >
+                            <div class="mb-3">
+                                <label for="obat" class="form-label">Pilih Obat</label>
+                                <select class="form-select" aria-label="Default select example" name="drug_id[]" id="drug_id" required>
+                                    <option value="">-- Pilih Nama Obat --</option>
+                                    @foreach ($drug as $data)
+                                        <option value="{{ $data->id }}" @if ($item->drug_id == $data->id) selected @endif>
+                                            {{ $data->nama_obat}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label for="obat" class="form-label">Jumlah Obat</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah[]" min="1"
+                                    value="{{ $item->keluar }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="obat" class="form-label"></label>
+                            <div class="d-flex mt-2">
+                                <div class="col-md-6"><button class="btn btn-danger" id="deleteRow">Hapus Obat</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="newinput"></div>
+                    </div>
+                @endforeach
+                <div class="col-md-4"><button class="btn btn-primary" id="rowAdder">Tambah Obat</button></div>
 
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -65,5 +100,42 @@
         // $('.sidebar-feed').addClass('show');
         // $('#menu-detail-feed').addClass('active');
         $('#menu-health-farm').removeClass('collapsed');
+
+        //addrow
+        $('#rowAdder').click(function() {
+            newRowAdd =
+            '<div class="row" id="row">'+
+            '<div class="col-md-4">' +
+                    '<div class="mb-3">' +
+                        '<label for="obat" class="form-label">Pilih Obat</label>'+
+                        '<select class="form-select" aria-label="Default select example" name="drug_id[]" id="drug_id" required>'+
+                            '<option value="">-- Pilih Nama Obat --</option>'+
+                            '@foreach ($drug as $data)' +
+                                '<option value="{{ $data->id }}" @if (('drug_id') == $data->id) selected @endif>' +
+                                    '{{ $data->nama_obat}}' +
+                                '</option>' +
+                            '@endforeach' +
+                        '</select>' +
+                   '</div>'+
+                '</div>'+
+                '<div class="col-md-3">'+
+                    '<div class="mb-3">'+
+                        '<label for="obat" class="form-label">Jumlah Obat</label>'+
+                        '<input type="number" class="form-control" id="jumlah" name="jumlah[]" min="1" value="{{ old('jumlah') }}" required>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="col-md-4">'+
+                    '<label for="obat" class="form-label"></label>'+
+                    '<div class="d-flex mt-2">'+
+                        '<div class="col-md-6"><button class="btn btn-danger" id="deleteRow">Hapus Obat</button></div>'+
+                    '</div>'+
+                '</div>' +
+            '</div>'
+
+                $('#newinput').append(newRowAdd);
+        });
+        $("body").on('click','#deleteRow', function () {
+            $(this).parents('#row').remove();
+        })
     </script>
 @endsection

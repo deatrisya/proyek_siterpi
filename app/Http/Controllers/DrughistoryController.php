@@ -29,10 +29,11 @@ class DrughistoryController extends Controller
 
     public function data(Request $request){
         $drughis = DB::table('drughistories')
-        ->selectRaw('drughistories.*, users.name as user_name, drugs.nama_obat as drug_name')
+        ->selectRaw('drughistories.*, users.name as user_name, drugs.nama_obat as drug_name,farms.nis as cow_nis, cow_health_histories.keterangan as keterangan ')
         ->join('users', 'users.id', '=', 'drughistories.user_id')
-        ->join('drugs', 'drugs.id', '=', 'drughistories.drug_id');
-        // ->join('farms','farms.id', '=','drughistories.')
+        ->join('drugs', 'drugs.id', '=', 'drughistories.drug_id')
+        ->leftJoin('cow_health_histories','cow_health_histories.id', '=','drughistories.cowhealth_id')
+        ->leftJoin('farms','farms.id', '=', 'cow_health_histories.farm_id');
 
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
@@ -53,6 +54,9 @@ class DrughistoryController extends Controller
             })
             ->editColumn('drug_name', function ($n) {
                 return $n->drug_name;
+            })
+            ->editColumn('keterangan', function ($t) {
+                return $t->cow_nis.'-'.$t->keterangan;
             })
             ->editColumn('tanggal', function ($d) {
                 $formatedDate = Carbon::createFromFormat('Y-m-d', $d->tanggal)->format('d-m-Y');
@@ -100,7 +104,7 @@ class DrughistoryController extends Controller
             $drughis =  new Drughistory;
             $drughis->user_id = $request->user_id;
             $drughis->drug_id = $request->drug_id;
-            $drughis->cowhealth_id = 8;
+            $drughis->cowhealth_id = null;
             $drughis->tanggal = $request->tanggal;
             $drughis->masuk = $request->masuk;
             $drughis->keluar = $request->keluar;
@@ -108,7 +112,7 @@ class DrughistoryController extends Controller
             $drug = Drug::where('id', $request->drug_id);
             $value = $drug->value('stok_akhir');
 
-            if ($request->keluar >= $value) {
+            if ($request->keluar > $value) {
                 return redirect()->route('historydrug.create')->with(['error'=> 'Data kurang dari permintaan']);
             } else {
                 $drug->update(['stok_akhir' => $value + ($request->masuk) - ($request->keluar)]);
