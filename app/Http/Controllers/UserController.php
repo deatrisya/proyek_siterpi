@@ -64,7 +64,8 @@ class UserController extends Controller
                     'foto' => 'required|image|mimes:png,jpg,jpeg|max:2048',
                     'name' => 'required|regex:/^[\pL\s]+$/u',
                     'username' => 'required|string|unique:users',
-                    'password' => 'required|min:8'
+                    'password' => 'required|min:8',
+                    'position' => 'required'
                 ],
                 [],
             );
@@ -79,6 +80,8 @@ class UserController extends Controller
                 $image_name = $request->file('foto')->store('foto_user', 'public');
             }
             $user->foto = $image_name;
+
+            $user->position = $request->position;
 
             $user->save();
 
@@ -126,7 +129,8 @@ class UserController extends Controller
                 [
                     'name' => 'required|regex:/^[\pL\s]+$/u',
                     'username' => 'required|string|unique:users,username,'.$id,
-                    'password' => 'min:8|confirmed|nullable'
+                    'password' => 'min:8|confirmed|nullable',
+                    'position' => 'required'
                 ],
                 [],
             );
@@ -137,6 +141,7 @@ class UserController extends Controller
 
             $user->name = $request->name;
             $user->username = $request->username;
+            $user->position = $request->position;
 
             if ($request->hasFile('foto')) {
                 $request->validate(
