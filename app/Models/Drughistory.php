@@ -8,22 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Drughistory extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable = [
         'user_id',
         'obat_id',
         'tanggal',
         'masuk',
         'keluar',
-        'cowhealth_id'
+        'cowhealth_id',
+        'drug_id'
     ];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     public function drug()
     {
         return $this->belongsTo(Drug::class);
     }
-    public function cowHealth() {
+    public function cowHealth()
+    {
         return $this->belongsTo(CowHealthHistory::class);
     }
 }

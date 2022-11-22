@@ -56,7 +56,7 @@ class FeedController extends Controller
         try {
             $request->validate(
                 [
-                   'nama_pakan' => 'required|string',
+                    'nama_pakan' => 'required|string',
                 ],
                 [],
             );
@@ -81,7 +81,8 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Feed::findOrFail($id)->first();
+        return response()->json($data);
     }
 
     /**
@@ -93,7 +94,7 @@ class FeedController extends Controller
     public function edit($id)
     {
         $feed = Feed::find($id);
-        return view('feed.edit',compact('feed'));
+        return view('feed.edit', compact('feed'));
     }
 
     /**
@@ -108,7 +109,7 @@ class FeedController extends Controller
         try {
             $request->validate(
                 [
-                   'nama_pakan' => 'required|string',
+                    'nama_pakan' => 'required|string',
 
                 ],
                 [],

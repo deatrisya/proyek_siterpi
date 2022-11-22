@@ -75,7 +75,7 @@ class CowHealthHistoryController extends Controller
         $farm = Farm::all();
         $drug = Drug::all();
         $healthfarm = CowHealthHistory::all();
-        return view('healthfarm.create',compact('farm','healthfarm','drug'));
+        return view('healthfarm.create', compact('farm', 'healthfarm', 'drug'));
     }
 
     /**
@@ -92,7 +92,8 @@ class CowHealthHistoryController extends Controller
                     'farm_id' => 'required',
                     'tanggal' => 'required|date',
                     'keterangan' => 'required|string'
-                ],[],
+                ],
+                [],
             );
 
             $healthfarm = new CowHealthHistory;
@@ -103,18 +104,53 @@ class CowHealthHistoryController extends Controller
 
 
             $farm = Farm::find($request->farm_id);
-            $farm -> kondisi = 'Sakit';
+            $farm->kondisi = 'Sakit';
             // $farm->keterangan = $
             $farm->save();
 
-            $hisdrug = new Drughistory;
-            $hisdrug->user_id = Auth::id();
-            $hisdrug->drug_id = $request->drug_id;
-            $hisdrug->cowhealth_id = $healthfarm->id;
-            $hisdrug->tanggal = $request->tanggal;
-            $hisdrug->masuk = 0;
-            $hisdrug->keluar = $request->jumlah;
-            $hisdrug->save();
+            $drug_id = [];
+            $jumlah = [];
+            $arr = [];
+
+            if ($request->drug_id) {
+                foreach ($request->drug_id as $key => $value) {
+                    $drug_id[] = $value;
+                }
+            }
+
+            if ($request->jumlah) {
+                foreach ($request->jumlah as $key => $value) {
+                    $jumlah[] = $value;
+                }
+            }
+
+            foreach ($drug_id as $key => $value) {
+                $arr[$key]['drug_id'] = $value;
+                $arr[$key]['keluar'] = $jumlah[$key];
+                $arr[$key]['user_id'] = Auth::id();
+                $arr[$key]['cowhealth_id'] = $healthfarm->id;
+                $arr[$key]['tanggal'] = $request->tanggal;
+                $arr[$key]['masuk'] = 0;
+            }
+            // dd($arr);
+
+            foreach ($arr as $key => $value) {
+                Drughistory::create($value);
+            }
+
+            // $hisdrug = new Drughistory;
+            // $hisdrug->user_id = Auth::id();
+            // foreach ($arr['drug_id'] as $key => $value) {
+            //     $hisdrug->drug_id = $value;
+            // }
+            // $hisdrug->cowhealth_id = $healthfarm->id;
+            // $hisdrug->tanggal = $request->tanggal;
+            // $hisdrug->masuk = 0;
+            // foreach ($arr['jumlah'] as $key => $value) {
+            //     $hisdrug->keluar = $value;
+            // }
+            // $hisdrug->save();
+
 
             // $drug = Drug::select('id')->where('id', $request->drug_id)->first();
             // $valueMasuk = Drughistory::where('drughistories.drug_id', '=', $drug->id)->sum('masuk');
@@ -152,8 +188,7 @@ class CowHealthHistoryController extends Controller
         $farm = Farm::all();
         $drug = Drug::all();
         $healthfarm = CowHealthHistory::find($id);
-        return view('healthfarm.edit',compact('farm','healthfarm','drug'));
-
+        return view('healthfarm.edit', compact('farm', 'healthfarm', 'drug'));
     }
 
     /**
@@ -171,7 +206,8 @@ class CowHealthHistoryController extends Controller
                     'farm_id' => 'required',
                     'tanggal' => 'required|date',
                     'keterangan' => 'required|string'
-                ],[],
+                ],
+                [],
 
 
             );
@@ -195,7 +231,7 @@ class CowHealthHistoryController extends Controller
      * @param  \App\Models\CowHealthHistory  $cowHealthHistory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         $healthfarm = CowHealthHistory::find($id);
         if ($healthfarm->drugHistories()->exists()) {
