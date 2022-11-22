@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'foto' => 'jpg',
             'name' => 'Admin',
             'username' => 'admin',
-            'password' => Hash::make('admin')
+            'password' => Hash::make('admin'),
+            'position' => 'Admin'
         ]);
     }
 }
