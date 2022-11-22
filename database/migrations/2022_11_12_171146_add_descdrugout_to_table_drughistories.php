@@ -14,7 +14,7 @@ class AddDescdrugoutToTableDrughistories extends Migration
     public function up()
     {
         Schema::table('drughistories', function (Blueprint $table) {
-            $table->unsignedBigInteger('cowhealth_id')->after('keluar');
+            $table->unsignedBigInteger('cowhealth_id')->after('keluar')->nullable();
             $table->foreign('cowhealth_id')->references('id')->on('cow_health_histories');
         });
     }
