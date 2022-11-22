@@ -53,7 +53,14 @@
                 <div class="col-md-3">
                     <label for="inputPassword" class="form-label">Konfirmasi Password</label>
                     <input type="password" class="form-control" id="password" name="password_confirmation" >
-
+                </div>
+                <div class="col-md-3">
+                    <label for="inputPosition" class="form-label">Posisi</label>
+                    <select class="form-control @error('position') is-invalid
+                            @enderror" aria-label="Default select example" name="position" id="position" required>
+                                <option @if($user->position =='Admin')selected @endif value="Admin">Admin</option>
+                                <option @if($user->position =='Manager')selected @endif value="Manager" >Manager</option>
+                    </select>
                 </div>
 
                 <div class="text-end">
