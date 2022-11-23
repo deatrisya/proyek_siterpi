@@ -23,7 +23,7 @@
           </li>
           <li class="nav-item">
               <a class="nav-link collapsed " href="{{ route('healthfarm.index') }}" id="menu-health-farm">
-                  <i class="bi bi-house"></i>
+                <i class="bi bi-file-earmark-medical"></i>
                   <span>Riwayat Kesehatan Sapi</span>
               </a>
           </li>
@@ -72,7 +72,7 @@
             </ul>
         </li>
         <!-- End Master Obat -->
-        
+
           <!-- User -->
           <li class="nav-item">
               <a class="nav-link collapsed " href="{{ route('user.index') }}" id="menu-user">

@@ -72,7 +72,7 @@ class UserController extends Controller
 
             $user = new User;
 
-            $user->name = $request->name;
+            $user->name = ucwords($request->name);
             $user->username = $request->username;
             $user->password = Hash::make($request->password);
 
@@ -135,11 +135,9 @@ class UserController extends Controller
                 [],
             );
 
-            $user = new User;
             $user = User::findOrFail($id);
 
-
-            $user->name = $request->name;
+            $user->name = ucwords($request->name);
             $user->username = $request->username;
             $user->position = $request->position;
 

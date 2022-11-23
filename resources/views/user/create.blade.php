@@ -55,11 +55,11 @@
 
                 <div class="col-6">
                     <label for="inputPosition" class="form-label">Posisi</label>
-                    <select class="form-control @error('position') is-invalid
+                    <select class="form-select @error('position') is-invalid
                             @enderror" aria-label="Default select example" name="position" id="position" required>
                                 <option @if(old('position')=='Admin')selected @endif value="Admin">Admin</option>
                                 <option value="Manager" @if(old('position')=='Manager')selected @endif>Manager</option>
-                              </select>
+                    </select>
                 </div>
 
                 <div class="text-end">
