@@ -20,7 +20,7 @@ class FeedhistoryController extends Controller
      */
     public function index()
     {
-        $feed = Feed::all();
+        $feed = Feed::orderBy('nama_pakan')->get();
         $from_date = Carbon::now()->startOfMonth()->format('Y-m-d');
         $to_date = Carbon::now()->endOfMonth()->format('Y-m-d');
 
@@ -37,7 +37,8 @@ class FeedhistoryController extends Controller
         $feedhis = DB::table('feedhistories')
             ->selectRaw('feedhistories.*, users.name as user_name, feeds.nama_pakan as feed_name')
             ->join('users', 'users.id', '=', 'feedhistories.user_id')
-            ->join('feeds', 'feeds.id', '=', 'feedhistories.feed_id');
+            ->join('feeds', 'feeds.id', '=', 'feedhistories.feed_id')
+            ->orderBy('created_at','desc');
 
         if ($request->from_date) {
             $feedhis->whereDate('feedhistories.tanggal', '>=', Carbon::parse($request->from_date));

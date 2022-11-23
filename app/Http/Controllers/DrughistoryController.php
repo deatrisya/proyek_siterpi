@@ -20,7 +20,7 @@ class DrughistoryController extends Controller
      */
     public function index()
     {
-        $drug = Drug::all();
+        $drug = Drug::orderBy('nama_obat')->get();
         $from_date = Carbon::now()->startOfMonth()->format('Y-m-d');
         $to_date = Carbon::now()->endOfMonth()->format('Y-m-d');
 
@@ -33,7 +33,8 @@ class DrughistoryController extends Controller
         ->join('users', 'users.id', '=', 'drughistories.user_id')
         ->join('drugs', 'drugs.id', '=', 'drughistories.drug_id')
         ->leftJoin('cow_health_histories','cow_health_histories.id', '=','drughistories.cowhealth_id')
-        ->leftJoin('farms','farms.id', '=', 'cow_health_histories.farm_id');
+        ->leftJoin('farms','farms.id', '=', 'cow_health_histories.farm_id')
+        ->orderBy('created_at','desc');
 
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
@@ -224,7 +225,7 @@ class DrughistoryController extends Controller
         if ($request->name) {
             $drughis->where('drughistories.user_id', $request->name);
         }
-        
+
 
        $data['drug'] = Drug::find($request->drug_id);
        $data['name'] = $request->name;
