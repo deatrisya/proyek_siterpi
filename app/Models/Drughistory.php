@@ -24,6 +24,6 @@ class Drughistory extends Model
         return $this->belongsTo(Drug::class);
     }
     public function cowHealth() {
-        return $this->belongsTo(CowHealthHistory::class);
+        return $this->belongsTo(CowHealthHistory::class,'cowhealth_id');
     }
 }
