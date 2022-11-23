@@ -59,7 +59,7 @@
                     @enderror
                 </div>
                 <div class="col-6">
-                    <label for="inputAddress" class="form-label">Keterangan</label>
+                    <label for="inputAddress" class="form-label">Riwayat Penyakit</label>
                     <br>
                     <small class="text-danger">Kosongi bila kondisi sapi sehat</small>
                     <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="5" >{{$farm->keterangan}} </textarea>

@@ -95,7 +95,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Stok Pakan</h5>
                                 <div class="select mb-3">
-                                    <label for="">Filter berdasarkan stok</label>
+                                    <label for="">Filter berdasarkan nama pakan</label>
                                     <select class="js-example-basic-single w-100" name="feed_id" id="feed_id">
                                         <option value="">Pilih Nama Pakan</option>
                                         @foreach ($feed as $data)
@@ -126,7 +126,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Stok Obat</h5>
                                 <div class="select mb-3">
-                                    <label for="">Filter berdasarkan stok</label>
+                                    <label for="">Filter berdasarkan nama obat</label>
                                     <select class="js-example-basic-single w-100" name="medicine_id" id="medicine_id">
                                         <option value="">Pilih Nama Obat</option>
                                         @foreach ($medicine as $data)
