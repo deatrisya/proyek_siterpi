@@ -224,6 +224,7 @@ class DrughistoryController extends Controller
         if ($request->name) {
             $drughis->where('drughistories.user_id', $request->name);
         }
+        
 
        $data['drug'] = Drug::find($request->drug_id);
        $data['name'] = $request->name;

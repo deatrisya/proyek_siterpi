@@ -2,14 +2,13 @@
 
 namespace App\Exports;
 
-use App\Models\Drughistory;
+use App\Models\CowHealthHistories;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use Maatwebsite\Excel\Events\AfterSheet;
 
-class DrughistoryExport implements FromView, ShouldAutoSize
+class CowHealthHistoriesExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -20,10 +19,6 @@ class DrughistoryExport implements FromView, ShouldAutoSize
     }
     public function view(): View
     {
-        return view('historydrug.excel', $this->data);
+        return view('healthfarm.excel', $this->data);
     }
-
-
-
-
 }

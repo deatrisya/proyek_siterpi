@@ -63,11 +63,11 @@
                         echo date('h:i:s a'); // menampilkan jam sekarang
                     @endphp</td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <td class="font-weight-bold">Nama Obat</td>
                     <td>:</td>
                     <td> {{$drug->nama_obat}}</td>
-                </tr>
+                </tr> --}}
             </table>
 
 
@@ -97,6 +97,7 @@
                 <th class="text-center fs">Tanggal</th>
                 <th class="text-center fs">Masuk</th>
                 <th class="text-center fs">Keluar</th>
+                <th class="text-center fs">Keterangan Penggunaan</th>
             </tr>
         </thead>
         <tbody>
@@ -104,10 +105,15 @@
                 <tr>
                     <td class="fs text-center">{{ $loop->iteration }}</td>
                     <td class="fs text-center">{{ $data->user->name }}</td>
-                    <td class="fs text-center">{{ $data->drug->nama_obat }}</td>
+                    <td class="fs text-center">{{ $data->drug->nama_obat}}</td>
                     <td class="fs text-center">{!! date('d F Y',strtotime($data->tanggal)) !!}</td>
                     <td class="fs text-center">{{ $data->masuk }} /pcs</td>
                     <td class="fs text-center">{{ $data->keluar}} /pcs</td>
+                    @if ($data->cowhealth_id != null)
+                        <td class="fs text-center"> No sapi {{$data->cowHealth->farm->nis}} - Penyakit {{ $data->cowHealth->keterangan}}</td>
+                    @else
+                    <td class="fs text-center"> - </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

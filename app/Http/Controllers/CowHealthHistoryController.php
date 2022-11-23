@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CowHealthHistoriesExport;
 use App\Models\CowHealthHistory;
 use App\Models\Drug;
 use App\Models\Drughistory;
 use App\Models\Farm;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CowHealthHistoryController extends Controller
 {
@@ -225,5 +228,36 @@ class CowHealthHistoryController extends Controller
         $healthfarm = CowHealthHistory::find($id);
         $healthfarm->delete();
         return redirect()->route('healthfarm.index')->with(['message' => 'Data berhasil dihapus.']);
+    }
+
+    public function exportData($request)
+    {
+        $cowhealth = CowHealthHistory::where('id', '!=', null);
+
+
+        if ($request->farm_id) {
+            $cowhealth->where('farm.farm_id', $request->farm_id);
+        }
+
+
+       $data['farm'] = Farm::find($request->farm_id);
+       $data['cowhealth'] = $cowhealth->get();
+       return $data;
+    }
+
+    public function pdf(Request $request)
+    {
+        $data = $this->exportData($request);
+
+        $pdf = Pdf::loadview('healthfarm.pdf', $data)
+            ->setPaper('f4', 'potrait');
+
+        return $pdf->stream();
+    }
+
+    public function excel(Request $request)
+    {
+        $data = $this->exportData($request);
+        return Excel::download(new CowHealthHistoriesExport($data), 'Laporan Data Stok Obat.xlsx');
     }
 }
