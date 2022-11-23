@@ -142,7 +142,7 @@ class FarmController extends Controller
             $request->validate(
                 [
                     'jk' => 'required',
-                    'tanggal_masuk' =>'required|date',
+                    'tanggal_masuk' =>'date',
                     'status' => 'required|string',
                     'kondisi' => 'required|string',
                     'keterangan' => 'nullable'
@@ -153,7 +153,6 @@ class FarmController extends Controller
 
             $farm = Farm::find($id);
             $farm->jk = $request->jk;
-            $farm->tanggal_masuk = $request->tanggal_masuk;
             $farm->status = $request->status;
             $farm->kondisi = $request->kondisi;
             $farm->keterangan = $request->keterangan;

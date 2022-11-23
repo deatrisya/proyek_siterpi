@@ -73,7 +73,7 @@ class CowHealthHistoryController extends Controller
 
     public function create()
     {
-        $farm = Farm::all();
+        $farm = Farm::where('status','Belum Terjual')->get();
         $drug = Drug::all();
         $healthfarm = CowHealthHistory::all();
         return view('healthfarm.create',compact('farm','healthfarm','drug'));
@@ -152,7 +152,7 @@ class CowHealthHistoryController extends Controller
      */
     public function edit($id)
     {
-        $farm = Farm::all();
+        $farm = Farm::where('status','Belum Terjual')->get();
         $drug = Drug::all();
         $healthfarm = CowHealthHistory::find($id);
         $drugHistories = Drughistory::where('cowhealth_id','=',$healthfarm->id)->get();
@@ -190,8 +190,13 @@ class CowHealthHistoryController extends Controller
             $farm ->keterangan = $request->keterangan;
             $farm->save();
 
+            $hisdrug = Drughistory::where('cowhealth_id',$healthfarm->id);
+            $hisdrug->delete();
+
             foreach ($request->drug_id as $key => $hismedicine) {
-                $hisdrug = Drughistory::where('cowhealth_id',$healthfarm->id)->first();
+
+                $hisdrug = new Drughistory;
+                $hisdrug->user_id = Auth::id();
                 $hisdrug->drug_id = $request->drug_id[$key];
                 $hisdrug->cowhealth_id = $healthfarm->id;
                 $hisdrug->tanggal = $request->tanggal;
@@ -223,6 +228,9 @@ class CowHealthHistoryController extends Controller
     public function destroy(Request $request,$id)
     {
         $healthfarm = CowHealthHistory::find($id);
+        if ($healthfarm->drugHistories()->exists()) {
+            return redirect()->route('healthfarm.index')->with(['error' => 'Data gagal dihapus.']);
+        }
         $healthfarm->delete();
         return redirect()->route('healthfarm.index')->with(['message' => 'Data berhasil dihapus.']);
     }
