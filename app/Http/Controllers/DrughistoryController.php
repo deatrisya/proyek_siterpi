@@ -36,6 +36,7 @@ class DrughistoryController extends Controller
         ->leftJoin('farms','farms.id', '=', 'cow_health_histories.farm_id')
         ->orderBy('created_at','desc');
 
+        
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
         }

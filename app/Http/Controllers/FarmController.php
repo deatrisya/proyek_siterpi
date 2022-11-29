@@ -32,7 +32,7 @@ class FarmController extends Controller
 
     public function data(Request $request)
     {
-        $farm = Farm::where('id', '!=', null)->orderBy('created_at','desc')->get();
+        $farm = Farm::where('id', '!=', null)->orderBy('created_at','desc');
 
         if ($request->status) {
             $farm->where('status', $request->status);
