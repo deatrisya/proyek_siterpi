@@ -28,7 +28,7 @@
 <body>
     <table width="100%">
         <tbody>
-            
+
             <table align="center" style="border-collapse:collapse;">
                 <td style="border-bottom:2px solid #000; text-align: center; width: 70px; width:70px">
                     <img src="{{public_path('admin/img/logo perusahaan.png')}}" alt="" style="width: 100px; height: 100px;">
@@ -62,22 +62,6 @@
                     <td> {{$status }}</td>
                 </tr>
             </table>
-
-
-            {{-- <tr>
-                <td class="fs" width="10%">
-                    Bahan
-                </td>
-                <td class="fs">: {{ $item->name ?? '' }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="fs" width="10%">
-                    Gudang
-                </td>
-                <td class="fs">: {{ $warehouse->name ?? '' }}</td>
-                <td></td>
-            </tr> --}}
         </tbody>
     </table>
     <br>

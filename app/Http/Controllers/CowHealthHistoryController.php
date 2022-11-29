@@ -244,7 +244,7 @@ class CowHealthHistoryController extends Controller
 
 
         if ($request->farm_id) {
-            $cowhealth->where('farm.farm_id', $request->farm_id);
+            $cowhealth->where('farm_id', $request->farm_id);
         }
 
 
