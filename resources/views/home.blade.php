@@ -56,7 +56,7 @@
                                 <h5 class="card-title">Sapi Terjual</h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-cart-check"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $cowsold }}</h6>
@@ -76,7 +76,7 @@
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-cart-x"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $cownotsold }}</h6>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-minecart-loaded"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6 id="stok_akhir">0</h6>
@@ -138,7 +138,7 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-capsule"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6 id="stok_obat">0</h6>
