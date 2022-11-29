@@ -28,7 +28,6 @@
             <th class="text-center fs" style="border: 1px solid black; text-align: center;vertical-align:middle ;height: 40px; font-weight: bold;">Jenis Kelamin</th>
             <th class="text-center fs" style="border: 1px solid black; text-align: center;vertical-align:middle ;height: 40px; font-weight: bold;">Tempat Lahir</th>
             <th class="text-center fs" style="border: 1px solid black; text-align: center;vertical-align:middle ;height: 40px; font-weight: bold;">Tanggal Lahir</th>
-            <th class="text-center fs" style="border: 1px solid black; text-align: center;vertical-align:middle ;height: 40px; font-weight: bold;">Posisi</th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +39,6 @@
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->getJenisKelamin()}}</td>
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->tempat_lahir }}</td>
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->tgl_lahir}}</td>
-                <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->position}}</td>
             </tr>
         @endforeach
     </tbody>

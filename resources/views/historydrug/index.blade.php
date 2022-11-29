@@ -20,8 +20,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Stok Obat</h5>
-                        <a href="{{ route('historydrug.create') }}" class="btn btn-primary mb-4">Tambah Stok Obat</a>
+                        <h5 class="card-title">Data Transaksi Stok Obat</h5>
+                        <a href="{{ route('historydrug.create') }}" class="btn btn-primary mb-4">Keluar / Masuk Stok Obat</a>
                         <!-- Table with stripped rows -->
                         <div class="row align-items-end mb-5">
                             <div class="col-md-3">
@@ -68,12 +68,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Nama User</th>
                                         <th scope="col">Nama Obat</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Masuk</th>
                                         <th scope="col">Keluar</th>
                                         <th scope="col">Keterangan Penggunaan</th>
+                                        <th scope="col">Nama User</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -119,10 +119,6 @@
                         "name": "id"
                     },
                     {
-                        "data": "user_name",
-                        "name": "users.name"
-                    },
-                    {
                         "data": "drug_name",
                         "name": "drugs.nama_obat"
                     },
@@ -137,6 +133,10 @@
                     },
                     {
                         "data": "keterangan"
+                    },
+                    {
+                        "data": "user_name",
+                        "name": "users.name"
                     },
                     {
                         "data": "options"

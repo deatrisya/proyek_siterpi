@@ -40,7 +40,7 @@
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal"
-                            value="{{ $feedhis->tanggal}}" required>
+                            value="{{ date("Y-m-d") }}" required>
                         @error('tanggal')
                             <small class="text-danger tanggal">{{ $message }}</small>
                         @enderror

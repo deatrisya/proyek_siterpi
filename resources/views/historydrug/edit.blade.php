@@ -40,21 +40,13 @@
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal"
-                            value="{{ $drughis->tanggal}}" required>
+                            value="{{ date("Y-m-d") }}" required>
                         @error('tanggal')
                             <small class="text-danger tanggal">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>
-                {{-- <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="opsi" class="form-label">Tipe</label>
-                        <select class="form-select" aria-label="Default select example" name="type" id="type" required>
-                            <option value="in" {{ $stock->type == 'in' ? 'selected' : '' }}>Masuk</option>
-                            <option value="out" {{ $stock->type == 'out' ? 'selected' : '' }}>Keluar </option>
-                    </select>
-                    </div>
-                </div> --}}
+
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="masuk" class="form-label">Masuk</label><br>

@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Data Pakan</h5>
-                        <a href="{{ route('feed.create') }}" class="btn btn-primary mb-4">Tambah Pakan</a>
+                        <a href="{{ route('feed.create') }}" class="btn btn-primary mb-4">Tambah Data Pakan Baru</a>
                         <!-- Table with stripped rows -->
                         <div class="table-responsive">
                             <table class="table" id="feedData" width="100%" >

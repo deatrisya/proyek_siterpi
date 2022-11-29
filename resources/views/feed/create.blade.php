@@ -12,7 +12,7 @@
     </div><!-- End Page Title -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Tambah Data Pakan</h5>
+            <h5 class="card-title">Tambah Data Pakan Baru</h5>
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="{{ route('feed.store') }}">
                 @csrf

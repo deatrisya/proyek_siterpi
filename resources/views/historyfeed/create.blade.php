@@ -12,7 +12,7 @@
     </div><!-- End Page Title -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Tambah Data Stok Pakan</h5>
+            <h5 class="card-title">Transaksi Data Stok Pakan</h5>
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="{{ route('historyfeed.store') }}">
                 @csrf
@@ -39,7 +39,7 @@
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal"
-                            value="{{ old('tanggal') }}" required>
+                            value="{{ date("Y-m-d") }}" required>
                         @error('tanggal')
                             <small class="text-danger tanggal">{{ $message }}</small>
                         @enderror

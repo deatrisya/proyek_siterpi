@@ -20,8 +20,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Stok Pakan</h5>
-                        <a href="{{ route('historyfeed.create') }}" class="btn btn-primary mb-4">Tambah Stok Pakan</a>
+                        <h5 class="card-title">Data Transaksi Stok Pakan</h5>
+                        <a href="{{ route('historyfeed.create') }}" class="btn btn-primary mb-4"> Keluar/Masuk Stok Pakan</a>
                         <!-- Table with stripped rows -->
                         <div class="row align-items-end mb-5">
                             <div class="col-md-3">
@@ -70,11 +70,11 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Nama User</th>
                                         <th scope="col">Nama Pakan</th>
                                         <th scope="col">Tanggal</th>
                                         <th scope="col">Masuk</th>
                                         <th scope="col">Keluar</th>
+                                        <th scope="col">Penanggung Jawab</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
@@ -122,10 +122,6 @@
                         "name": "id"
                     },
                     {
-                        "data": "user_name",
-                        "name": "users.name"
-                    },
-                    {
                         "data": "feed_name",
                         "name": "feeds.nama_pakan"
                     },
@@ -137,6 +133,10 @@
                     },
                     {
                         "data": "keluar"
+                    },
+                    {
+                        "data": "user_name",
+                        "name": "users.name"
                     },
                     {
                         "data": "options"
