@@ -41,7 +41,7 @@ Route::group(['middleware'=>'auth'],function() {
     Route::resource('employee',EmployeeController::class);
     Route::post('employee-data',[EmployeeController::class,'data']);
 
-    Route::get('employees-pdf', [EmployeeController::class, 'pdf'])->name('employee.pdf');
+    Route::get('employee-pdf', [EmployeeController::class, 'pdf'])->name('employee.pdf');
     Route::get('employees-excel', [EmployeeController::class, 'excel'])->name('employee.excel');
 
     Route::resource('user',UserController::class);
