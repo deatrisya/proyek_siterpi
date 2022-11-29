@@ -117,10 +117,10 @@
             });
         }
 
-        function printData(url) {
-            var status = document.getElementById('status').value;
-            window.open(url + '?status=' + status);
-        }
+        // function printData(url) {
+        //     var status = document.getElementById('status').value;
+        //     window.open(url + '?status=' + status);
+        // }
     </script>
 @endsection
 @section('js')
