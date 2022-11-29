@@ -28,14 +28,7 @@
 <body>
     <table width="100%">
         <tbody>
-            {{-- <tr>
-                <td colspan="3" class="text-center">
-                    <h4 class="mb-1 text-center">{{ config('app.name') }}</h4>
-                    <p class="fs mb-0">{{ config('app.address') }}</p>
-                    <p class="fs mb-0">No. Tlp. {{ config('app.phone') }}</p>
-                    <h5 class="mb-4 mt-2 text-center">Laporan Data Sapi</h5>
-                </td>
-            </tr> --}}
+            
             <table align="center" style="border-collapse:collapse;">
                 <td style="border-bottom:2px solid #000; text-align: center; width: 70px; width:70px">
                     <img src="{{public_path('admin/img/logo perusahaan.png')}}" alt="" style="width: 100px; height: 100px;">

@@ -7,21 +7,6 @@
                 <p><b>Laporan Data Sapi</b></p>
             </td>
         </tr>
-
-        {{-- <tr>
-            <td class="fs" width="10%">
-                Bahan
-            </td>
-            <td class="fs">: {{ $item->name ?? '' }}</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td class="fs" width="10%">
-                Gudang
-            </td>
-            <td class="fs">: {{ $warehouse->name ?? '' }}</td>
-            <td></td>
-        </tr> --}}
     </tbody>
 </table>
 <br>
