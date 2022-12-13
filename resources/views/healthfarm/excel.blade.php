@@ -38,7 +38,6 @@
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->farm->nis }}</td>
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{!! date('d F Y',strtotime($data->tanggal)) !!}</td>
                 <td class="fs text-center" colspan="3" style="border: 1px solid black; text-align: center;">{{ $data->keterangan }}</td>
-
             </tr>
         @endforeach
     </tbody>

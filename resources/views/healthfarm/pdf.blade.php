@@ -81,7 +81,6 @@
                     <td class="fs text-center">{{ $data->farm->nis }}</td>
                     <td class="fs text-center">{{ $data->tanggal}}</td>
                     <td class="fs text-center">{{ $data->keterangan}}</td>
-
                 </tr>
             @endforeach
         </tbody>

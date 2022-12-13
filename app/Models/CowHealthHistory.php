@@ -15,7 +15,7 @@ class CowHealthHistory extends Model
     ];
     public function farm()
     {
-        return $this->belongsTo(farm::class);
+        return $this->belongsTo(Farm::class);
     }
     public function drugHistories(){
         return $this->hasMany(Drughistory::class,'cowhealth_id');

@@ -58,7 +58,7 @@
                 <tr>
                     <td class="font-weight-bold">Nama Obat</td>
                     <td>:</td>
-                    <td> {{$drug->nama_obat}}</td>
+                    <td> {{$drug->nama_obat ?? ''}}</td>
                 </tr>
             </table>
         </tbody>

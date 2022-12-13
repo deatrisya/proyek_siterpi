@@ -194,7 +194,6 @@ class UserController extends Controller
             return redirect()->route('user.index')->with(['message' => 'Data berhasil dihapus.']);
             // delete
         }
-
     }
 }
 

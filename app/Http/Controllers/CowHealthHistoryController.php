@@ -242,11 +242,9 @@ class CowHealthHistoryController extends Controller
     {
         $cowhealth = CowHealthHistory::where('id', '!=', null);
 
-
         if ($request->farm_id) {
             $cowhealth->where('farm_id', $request->farm_id);
         }
-
 
        $data['farm'] = Farm::find($request->farm_id);
        $data['cowhealth'] = $cowhealth->get();
