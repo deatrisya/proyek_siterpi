@@ -147,7 +147,6 @@ class EmployeeController extends Controller
         try {
             $request->validate(
                 [
-                    // 'foto' => 'image|max:2000|nullable',
                     'nama' => 'required|regex:/^[\pL\s]+$/u',
                     'jk' => 'required',
                     'tempat_lahir' => 'required|regex:/^[\pL\s]+$/u',
@@ -156,8 +155,6 @@ class EmployeeController extends Controller
                 [],
                 $attributes
             );
-
-            // dd($request->all());
 
             $employee = Employee::find($id);
             $employee->nip = $employee->nip;

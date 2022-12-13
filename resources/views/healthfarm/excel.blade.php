@@ -6,7 +6,7 @@
             <td colspan="6" rowspan="5"  style="text-align: center">
                 <p><b>{{ config('app.name') }}</b></p>
                 <p class="fs mb-0">{{ config('app.address') }} Tlp. {{ config('app.phone') }}</p>
-                <p><b>Laporan Data Riwayat Obat</b></p>
+                <p><b>Laporan Data Rekap Kesehatan</b></p>
             </td>
         </tr>
         <br><br>
@@ -38,7 +38,6 @@
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{{ $data->farm->nis }}</td>
                 <td class="fs text-center" style="border: 1px solid black; text-align: center;">{!! date('d F Y',strtotime($data->tanggal)) !!}</td>
                 <td class="fs text-center" colspan="3" style="border: 1px solid black; text-align: center;">{{ $data->keterangan }}</td>
-
             </tr>
         @endforeach
     </tbody>

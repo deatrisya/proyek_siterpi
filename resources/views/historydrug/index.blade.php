@@ -132,7 +132,8 @@
                         "data": "keluar"
                     },
                     {
-                        "data": "keterangan"
+                        "data": "keterangan",
+                        "name": "cow_health_histories.keterangan"
                     },
                     {
                         "data": "user_name",

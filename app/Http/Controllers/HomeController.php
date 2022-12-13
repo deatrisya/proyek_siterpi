@@ -46,7 +46,6 @@ class HomeController extends Controller
             'medicine' => $medicine
         ];
 
-        // dd($medicinestok);
         return view('home', $data);
     }
 
@@ -54,7 +53,7 @@ class HomeController extends Controller
         $loadData = Feed::find($id);
         return response()->json($loadData);
     }
-    
+
     public function getMedicine($id) {
         $loadData = Drug::find($id);
         return response()->json($loadData);

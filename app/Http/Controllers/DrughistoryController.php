@@ -36,6 +36,7 @@ class DrughistoryController extends Controller
         ->leftJoin('farms','farms.id', '=', 'cow_health_histories.farm_id')
         ->orderBy('created_at','desc');
 
+
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
         }
@@ -165,7 +166,6 @@ class DrughistoryController extends Controller
         try{
             $request->validate([
                 'drug_id' => 'required',
-                // 'cowhealth_id' => 'required',
                 'tanggal' => 'required|date',
                 'masuk' => 'required|numeric',
                 'keluar' => 'required|numeric'
@@ -174,7 +174,6 @@ class DrughistoryController extends Controller
             $drughis = Drughistory::find($id);
             $drughis->user_id = $request->user_id;
             $drughis->drug_id = $request->drug_id;
-            // $drughis->cowhealth_id = $request->cowhealth_id;
             $drughis->tanggal = $request->tanggal;
             $drughis->masuk = $request->masuk;
             $drughis->keluar = $request->keluar;
@@ -225,7 +224,14 @@ class DrughistoryController extends Controller
         if ($request->name) {
             $drughis->where('drughistories.user_id', $request->name);
         }
+        
+        if ($request->from_date) {
+            $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
+        }
 
+        if ($request->to_date) {
+            $drughis->whereDate('drughistories.tanggal', '<=', Carbon::parse($request->to_date));
+        }
 
        $data['drug'] = Drug::find($request->drug_id);
        $data['name'] = $request->name;

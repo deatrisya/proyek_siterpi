@@ -40,7 +40,7 @@
                 </td>
             </table>
         <br>
-            <h6 style="text-align: center;" > LAPORAN DATA STOK OBAT</h6>
+            <h6 style="text-align: center;" > LAPORAN DATA REKAP KESEHATAN SAPI</h6>
             <table style="border: none" class="fs ml-5">
                 <tr>
                     <td class="font-weight-bold">Tanggal </td>
@@ -58,7 +58,7 @@
                 <tr>
                     <td class="font-weight-bold">Nomor Sapi</td>
                     <td>:</td>
-                    <td> {{$farm->farm_id}}</td>
+                    <td> {{$farm->farm_id ?? ''}}</td>
                 </tr>
             </table>
 
@@ -81,7 +81,6 @@
                     <td class="fs text-center">{{ $data->farm->nis }}</td>
                     <td class="fs text-center">{{ $data->tanggal}}</td>
                     <td class="fs text-center">{{ $data->keterangan}}</td>
-
                 </tr>
             @endforeach
         </tbody>

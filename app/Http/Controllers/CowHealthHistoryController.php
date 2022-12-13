@@ -24,7 +24,7 @@ class CowHealthHistoryController extends Controller
     public function index()
     {
         $farm = Farm::all();
-        $from_date = Carbon::now()->startOfMonth()->format('Y-m-d');
+        $from_date = Carbon::now()->firstOfMonth()->format('Y-m-d');
         $to_date = Carbon::now()->endOfMonth()->format('Y-m-d');
         return view('healthfarm.index', compact('farm', 'from_date', 'to_date'));
     }
@@ -242,11 +242,9 @@ class CowHealthHistoryController extends Controller
     {
         $cowhealth = CowHealthHistory::where('id', '!=', null);
 
-
         if ($request->farm_id) {
             $cowhealth->where('farm_id', $request->farm_id);
         }
-
 
        $data['farm'] = Farm::find($request->farm_id);
        $data['cowhealth'] = $cowhealth->get();
@@ -266,6 +264,6 @@ class CowHealthHistoryController extends Controller
     public function excel(Request $request)
     {
         $data = $this->exportData($request);
-        return Excel::download(new CowHealthHistoriesExport($data), 'Laporan Data Stok Obat.xlsx');
+        return Excel::download(new CowHealthHistoriesExport($data), 'Laporan Data Rekap Kesehatan Sapi.xlsx');
     }
 }

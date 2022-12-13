@@ -51,27 +51,27 @@ class DrugController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        try {
-            $request->validate(
-                [
-                   'nama_obat' => 'required|string',
-                ],
-                [],
-            );
+        public function store(Request $request)
+        {
+            try {
+                $request->validate(
+                    [
+                    'nama_obat' => 'required|string',
+                    ],
+                    [],
+                );
 
-            $drug = new Drug;
-            $drug->nama_obat = $request->nama_obat;
-            $drug->stok_akhir = 0;
+                $drug = new Drug;
+                $drug->nama_obat = $request->nama_obat;
+                $drug->stok_akhir = 0;
 
-            $drug->save();
-            return redirect()->route('drug.index')->with(['message' => 'Data berhasil di simpan.']);
-        } catch (\Throwable $th) {
-            throw $th;
-            return redirect()->route('drug.index')->with(['message' => 'Data gagal di simpan.']);
+                $drug->save();
+                return redirect()->route('drug.index')->with(['message' => 'Data berhasil di simpan.']);
+            } catch (\Throwable $th) {
+                throw $th;
+                return redirect()->route('drug.index')->with(['message' => 'Data gagal di simpan.']);
+            }
         }
-    }
 
     /**
      * Display the specified resource.
