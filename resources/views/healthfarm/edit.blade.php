@@ -1,19 +1,19 @@
 @extends('layouts.app')
-@section('title', 'Riwayat Kesehatan Sapi')
+@section('title', 'Rekap Kesehatan Sapi')
 @section('content')
     <div class="pagetitle">
-        <h1>Edit Riwayat Kesehatan Sapi</h1>
+        <h1>Edit Rekap Kesehatan Sapi</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item">Master Sapi</a></li>
-                <li class="breadcrumb-item active">Riwayat Kesehatan Sapi</li>
+                <li class="breadcrumb-item active">Rekap Kesehatan Sapi</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Edit Data Riwayat Kesehatan</h5>
+            <h5 class="card-title">Edit Data Rekap Kesehatan</h5>
             <!-- Multi Columns Form -->
             <form class="row g-3" method="POST" action="{{ route('healthfarm.update',$healthfarm->id) }}">
                 @csrf

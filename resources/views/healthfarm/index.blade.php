@@ -1,16 +1,16 @@
 @extends('layouts.app')
-@section('title', 'Riwayat Kesehatan Sapi')
+@section('title', 'Rekap Kesehatan Sapi')
 @section('css')
     <link rel="stylesheet" href="{{ asset('admin/vendor/datatable/datatables.min.css') }}">
 @endsection
 @section('content')
     <div class="pagetitle">
-        <h1>Riwayat Kesehatan Sapi</h1>
+        <h1>Rekap Kesehatan Sapi</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item">Master Sapi</a></li>
-                <li class="breadcrumb-item active">Riwayat Kesehatan Sapi</li>
+                <li class="breadcrumb-item active">Rekap Kesehatan Sapi</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,8 +20,8 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Riwayat Kesehatan Sapi</h5>
-                        <a href="{{ route('healthfarm.create') }}" class="btn btn-primary mb-4">Tambah Riwayat Kesehatan</a>
+                        <h5 class="card-title">Data Rekap Kesehatan Sapi</h5>
+                        <a href="{{ route('healthfarm.create') }}" class="btn btn-primary mb-4">Tambah Rekap Kesehatan</a>
                         <!-- Table with stripped rows -->
                         <div class="row align-items-end mb-5">
                             <div class="col-md-3">

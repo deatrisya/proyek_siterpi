@@ -24,7 +24,7 @@ class CowHealthHistoryController extends Controller
     public function index()
     {
         $farm = Farm::all();
-        $from_date = Carbon::now()->startOfMonth()->format('Y-m-d');
+        $from_date = Carbon::now()->firstOfMonth()->format('Y-m-d');
         $to_date = Carbon::now()->endOfMonth()->format('Y-m-d');
         return view('healthfarm.index', compact('farm', 'from_date', 'to_date'));
     }

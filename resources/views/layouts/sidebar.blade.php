@@ -24,7 +24,7 @@
           <li class="nav-item">
               <a class="nav-link collapsed " href="{{ route('healthfarm.index') }}" id="menu-health-farm">
                 <i class="bi bi-file-earmark-medical"></i>
-                  <span>Riwayat Kesehatan Sapi</span>
+                  <span>Rekap Kesehatan Sapi</span>
               </a>
           </li>
 

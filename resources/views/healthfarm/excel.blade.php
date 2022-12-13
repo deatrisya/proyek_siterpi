@@ -6,7 +6,7 @@
             <td colspan="6" rowspan="5"  style="text-align: center">
                 <p><b>{{ config('app.name') }}</b></p>
                 <p class="fs mb-0">{{ config('app.address') }} Tlp. {{ config('app.phone') }}</p>
-                <p><b>Laporan Data Riwayat Obat</b></p>
+                <p><b>Laporan Data Rekap Kesehatan</b></p>
             </td>
         </tr>
         <br><br>
