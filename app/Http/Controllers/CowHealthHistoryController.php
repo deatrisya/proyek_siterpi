@@ -264,6 +264,6 @@ class CowHealthHistoryController extends Controller
     public function excel(Request $request)
     {
         $data = $this->exportData($request);
-        return Excel::download(new CowHealthHistoriesExport($data), 'Laporan Data Stok Obat.xlsx');
+        return Excel::download(new CowHealthHistoriesExport($data), 'Laporan Data Rekap Kesehatan Sapi.xlsx');
     }
 }
