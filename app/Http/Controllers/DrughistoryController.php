@@ -29,7 +29,7 @@ class DrughistoryController extends Controller
 
     public function data(Request $request){
         $drughis = DB::table('drughistories')
-        ->selectRaw('drughistories.*, users.name as user_name, drugs.nama_obat as drug_name,farms.nis as cow_nis, cow_health_histories.keterangan as keterangan ')
+        ->selectRaw('drughistories.*,drughistories.masuk as obatmasuk,drughistories.keluar as obatkeluar, users.name as user_name, drugs.nama_obat as drug_name,farms.nis as cow_nis, cow_health_histories.keterangan as keterangan ')
         ->join('users', 'users.id', '=', 'drughistories.user_id')
         ->join('drugs', 'drugs.id', '=', 'drughistories.drug_id')
         ->leftJoin('cow_health_histories','cow_health_histories.id', '=','drughistories.cowhealth_id')
@@ -63,6 +63,12 @@ class DrughistoryController extends Controller
             ->editColumn('tanggal', function ($d) {
                 $formatedDate = Carbon::createFromFormat('Y-m-d', $d->tanggal)->format('d-m-Y');
                 return $formatedDate;
+            })
+            ->editColumn('masuk',function ($m) {
+                return $m->masuk . ' Pcs';
+            })
+            ->editColumn('keluar',function ($k) {
+                return $k->keluar . ' Pcs';
             })
             ->addColumn('options', function ($row) {
                 $act['edit'] = route('historydrug.edit', ['historydrug' => $row->id]);
@@ -224,7 +230,7 @@ class DrughistoryController extends Controller
         if ($request->name) {
             $drughis->where('drughistories.user_id', $request->name);
         }
-        
+
         if ($request->from_date) {
             $drughis->whereDate('drughistories.tanggal', '>=', Carbon::parse($request->from_date));
         }
