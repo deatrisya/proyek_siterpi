@@ -73,7 +73,7 @@
                                         <th scope="col">Masuk</th>
                                         <th scope="col">Keluar</th>
                                         <th scope="col">Keterangan Penggunaan</th>
-                                        <th scope="col">Nama User</th>
+                                        <th scope="col">Penanggung Jawab</th>
                                         <th scope="col">Opsi</th>
                                     </tr>
                                 </thead>
