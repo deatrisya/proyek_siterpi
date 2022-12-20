@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Jenis Kelamin</label>
-                    <select id="inputState" class="form-select" name="jk" id="jk">
+                    <select id="jk" class="form-select" name="jk">
                         <option value=""> - Pilih Jenis Kelamin -</option>
                         <option value="Jantan" @if (old('jk') == "Jantan") selected @endif> Jantan</option>
                         <option value="Betina" @if (old('jk') == "Betina") selected @endif> Betina</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Status</label>
-                    <select id="inputState" class="form-select" name="status" id="status">
+                    <select class="form-select" name="status" id="status">
                         <option value=""> - Pilih Status -</option>
                         <option value="Terjual" @if (old('status') == "Terjual") selected @endif> Terjual</option>
                         <option value="Belum Terjual" @if (old('status') == "Belum Terjual") selected @endif> Belum Terjual</option>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputState" class="form-label">Kondisi</label>
-                    <select id="inputState" class="form-select" name="kondisi" id="kondisi">
+                    <select class="form-select" name="kondisi" id="kondisi">
                         <option value=""> - Pilih Kondisi -</option>
                         <option value="Sehat" @if (old('kondisi') == "Sehat") selected @endif> Sehat</option>
                         <option value="Sakit" @if (old('kondisi') == "Sakit") selected @endif> Sakit</option>

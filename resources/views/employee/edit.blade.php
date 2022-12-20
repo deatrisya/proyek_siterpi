@@ -36,11 +36,11 @@
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Jenis Kelamin</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jk" id="laki" value="L" checked=""  @if($employee->jk == 'L') checked @endif>
+                    <input class="form-check-input" type="radio" name="jk" id="jk" value="L" checked=""  @if($employee->jk == 'L') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Laki-Laki</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jk" id="perempuan" value="P"  @if($employee->jk == 'P') checked @endif>
+                    <input class="form-check-input" type="radio" name="jk" id="jk" value="P"  @if($employee->jk == 'P') checked @endif>
                     <label class="form-check-label" for="gridRadios1">Perempuan</label>
                 </div>
                 @error('jk')
