@@ -24,11 +24,11 @@
 
                         <div class="row align-items-end mb-5">
                             <div class="col">
-                                <a href=" {{ route('employee.pdf') }}" class="btn mb-0 btn-danger text-sm" target="_blank">
+                                <a href=" {{ route('employee.pdf') }}" class="btn mb-0 btn-danger text-sm" id="cetakPdf" target="_blank">
                                     <i class="bi bi-file-earmark-pdf text-lg me-1"></i>
                                     PDF
                                 </a>
-                                <a href="{{ route('employee.excel')}}" class="btn mb-0 btn-success text-sm" target="_blank">
+                                <a href="{{ route('employee.excel')}}" class="btn mb-0 btn-success text-sm" id="cetakExcel" target="_blank">
                                     <i class="bi bi-file-earmark-excel text-lg"></i>
                                     Excel
                                 </a>

@@ -29,7 +29,7 @@
 
                 <div class="col-md-3">
                     <label for="inputNama" class="form-label">Nama</label>
-                    <input type="text" class="form-control text-capitalize" id="name" name="name" value="{{ $user->name }}" required>
+                    <input type="text" class="form-control text-capitalize" id="nama" name="name" value="{{ $user->name }}" required>
                     @error('name')
                         <small class="text-danger error_name">{{ $message }}</small>
                     @enderror
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="inputPassword" class="form-label">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="password" name="password_confirmation" >
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" >
                 </div>
                 <div class="col-md-3">
                     <label for="inputPosition" class="form-label">Posisi</label>

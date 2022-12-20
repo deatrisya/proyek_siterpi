@@ -93,7 +93,7 @@
                                             </div>
                                         </div> --}}
                                         <div class="col-12">
-                                            <button class="btn btn-primary btn-primary-success w-100" type="submit">Login</button>
+                                            <button class="btn btn-primary btn-primary-success w-100 Login" type="submit">Masuk</button>
                                         </div>
 
                                     </form>

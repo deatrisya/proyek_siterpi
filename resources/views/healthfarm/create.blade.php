@@ -85,7 +85,7 @@
                 <div class="col-md-4"><button class="btn btn-primary" id="rowAdder">Tambah Obat</button></div>
 
                 <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     <a href="{{ route('healthfarm.index') }}" class="btn btn-secondary">Kembali</a>
                 </div>
             </form><!-- End Multi Columns Form -->

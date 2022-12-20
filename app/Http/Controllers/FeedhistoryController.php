@@ -64,6 +64,12 @@ class FeedhistoryController extends Controller
                 $formatedDate = Carbon::createFromFormat('Y-m-d', $d->tanggal)->format('d-m-Y');
                 return $formatedDate;
             })
+            ->editColumn('masuk',function ($m) {
+                return $m->masuk . ' Kg';
+            })
+            ->editColumn('keluar',function ($k) {
+                return $k->keluar . ' Kg';
+            })
             ->addColumn('options', function ($row) {
                 $act['edit'] = route('historyfeed.edit', ['historyfeed' => $row->id]);
                 $act['data'] = $row;

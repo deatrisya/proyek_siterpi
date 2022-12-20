@@ -3,11 +3,11 @@
         @if (auth()->user()->position=='Admin')
         <a class="btn btn-warning" href="{{ $edit }}"><i class="bi bi-pencil"
                 aria-hidden="true"></i></a>
-        <a class="btn btn-danger" href="#"
+        <a class="btn btn-danger" href="#" 
             onclick="showDeleteConfirm({{ $data->id }})"><i class="bi bi-trash"></i></a>
         <form id="delete-form{{ $data->id }}" action="{{ route('employee.destroy', ['employee' => $data->id]) }}"
             method="POST" class="d-none">
-            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_method" value="DELETE" >
             @csrf
         @else
             <div class="text-center">

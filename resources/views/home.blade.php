@@ -96,14 +96,17 @@
                                 <h5 class="card-title">Stok Pakan</h5>
                                 <div class="select mb-3">
                                     <label for="">Filter berdasarkan nama pakan</label>
-                                    <select class="js-example-basic-single w-100" name="feed_id" id="feed_id">
-                                        <option value="">Pilih Nama Pakan</option>
-                                        @foreach ($feed as $data)
-                                            <option value="{{ $data->id }}"
-                                                @if (old('feed_id') == $data->id) selected @endif>{{ $data->nama_pakan }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-md-12 col-xs-6">
+                                        <select class="js-example-basic-single w-100" name="feed_id" id="feed_id">
+                                            <option value="">Pilih Nama Pakan</option>
+                                            @foreach ($feed as $data)
+                                                <option value="{{ $data->id }}"
+                                                    @if (old('feed_id') == $data->id) selected @endif>
+                                                    {{ $data->nama_pakan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -127,14 +130,17 @@
                                 <h5 class="card-title">Stok Obat</h5>
                                 <div class="select mb-3">
                                     <label for="">Filter berdasarkan nama obat</label>
-                                    <select class="js-example-basic-single w-100" name="medicine_id" id="medicine_id">
-                                        <option value="">Pilih Nama Obat</option>
-                                        @foreach ($medicine as $data)
-                                            <option value="{{ $data->id }}"
-                                                @if (old('drug_id') == $data->id) selected @endif>{{ $data->nama_obat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-md-12 col-xs-6">
+                                        <select class="js-example-basic-single w-100" name="medicine_id" id="medicine_id">
+                                            <option value="">Pilih Nama Obat</option>
+                                            @foreach ($medicine as $data)
+                                                <option value="{{ $data->id }}"
+                                                    @if (old('drug_id') == $data->id) selected @endif>
+                                                    {{ $data->nama_obat }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

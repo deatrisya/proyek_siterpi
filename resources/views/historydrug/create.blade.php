@@ -46,22 +46,24 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="masuk" class="form-label">Masuk</label><br>
-                        <small>Isi 0 jika tidak ada data yang masuk</small>
+                    <label for="masuk" class="form-label">Masuk</label><br>
+                    <small>Isi 0 jika tidak ada data yang masuk</small>
+                    <div class="input-group mb-3">
                         <input type="number" class="form-control" id="masuk" name="masuk" value="{{ old('masuk') }}"
                             required>
+                            <span class="input-group-text" id="basic-addon1">Pcs</span>
                         @error('masuk')
                             <small class="text-danger masuk">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="mb-3">
-                        <label for="keluar" class="form-label">Keluar</label><br>
-                        <small>Isi 0 Jika tidak ada data yang keluar</small>
+                    <label for="keluar" class="form-label">Keluar</label><br>
+                    <small>Isi 0 Jika tidak ada data yang keluar</small>
+                    <div class="input-group mb-3">
                         <input type="number" class="form-control" id="keluar" name="keluar"
                             value="{{ old('keluar') }}" required>
+                        <span class="input-group-text" id="basic-addon1">Pcs</span>
                         @error('keluar')
                             <small class="text-danger keluar">{{ $message }}</small>
                         @enderror

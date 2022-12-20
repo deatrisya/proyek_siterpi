@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <label for="inputAddress" class="form-label">Jenis Kelamin</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jk" id="laki" value="L" checked=""  @if(old('jk')) checked @endif>
+                    <input class="form-check-input" type="radio" name="jk" id="jk" value="L" checked=""  @if(old('jk')) checked @endif>
                     <label class="form-check-label" for="gridRadios1">Laki-Laki</label>
                 </div>
                 <div class="form-check">

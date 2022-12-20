@@ -20,7 +20,7 @@
                 <div class="col-6">
                     <label for="inputFoto" class="form-label">Foto</label>
                     <br>
-                    <input name="foto" type="file" class="form-control" id="formFile" required>
+                    <input name="foto" type="file" class="form-control" id="foto" required>
                     @error('foto')
                     <small class="text-danger foto">{{ $message }}</small>
                     @enderror
@@ -29,7 +29,7 @@
                 <div class="col-6">
                     <label for="inputNama" class="form-label">Nama</label>
                     <br>
-                    <input name="name" type="text" class="form-control text-capitalize" id="formFile" value="{{old('name')}}" required>
+                    <input name="name" type="text" class="form-control text-capitalize" id="nama" value="{{old('name')}}" required>
                     @error('name')
                     <small class="text-danger name">{{ $message }}</small>
                     @enderror
@@ -38,7 +38,7 @@
                 <div class="col-6">
                     <label for="inputUsername" class="form-label">Username</label>
                     <br>
-                    <input name="username" type="text" class="form-control" id="formFile" value="{{old('username')}}" required>
+                    <input name="username" type="text" class="form-control" id="username" value="{{old('username')}}" required>
                     @error('username')
                     <small class="text-danger username">{{ $message }}</small>
                     @enderror
@@ -47,7 +47,7 @@
                 <div class="col-6">
                     <label for="inputPassword" class="form-label">Password</label>
                     <br>
-                    <input name="password" type="password" class="form-control" id="formFile" required>
+                    <input name="password" type="password" class="form-control" id="password" required>
                     @error('password')
                     <small class="text-danger password">{{ $message }}</small>
                     @enderror
