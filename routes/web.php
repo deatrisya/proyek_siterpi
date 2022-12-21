@@ -12,6 +12,22 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Artisan;
+Route::get('/config', function () {
+    Artisan::call(
+        'migrate:fresh',
+        [
+            '--force' => true
+        ]
+    );
+    Artisan::call(
+        'db:seed',
+        [
+            '--force' => true
+        ]
+    );
+});
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,3 +89,4 @@ Route::group(['middleware'=>'auth'],function() {
     Route::get('getMedicine/{id}',[HomeController::class,'getMedicine']);
 
 });
+
